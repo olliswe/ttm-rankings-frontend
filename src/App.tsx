@@ -8,7 +8,7 @@ const App = () => {
 
   useEffect(() => {
     fetchRankingsData();
-  }, []);
+  }, [fetchRankingsData]);
   return <div></div>;
 };
 
