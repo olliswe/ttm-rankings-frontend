@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ttm-rankings-frontend/static/css/main.71d40b74.css",
+    "main.js": "/ttm-rankings-frontend/static/js/main.05d86cf5.js",
+    "index.html": "/ttm-rankings-frontend/index.html",
+    "main.71d40b74.css.map": "/ttm-rankings-frontend/static/css/main.71d40b74.css.map",
+    "main.05d86cf5.js.map": "/ttm-rankings-frontend/static/js/main.05d86cf5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.71d40b74.css",
+    "static/js/main.05d86cf5.js"
+  ]
+}
