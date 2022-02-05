@@ -36,6 +36,8 @@ const individualResultsColumns: ColumnsType<IndividualResult> = [
     dataIndex: "battle_size",
   },
   { title: "Typ", dataIndex: "tournament_type", key: "tournament_type" },
+  { title: "Anz. Spieler", dataIndex: "players", key: "players" },
+  { title: "Anz. Runden", dataIndex: "rounds", key: "rouns" },
   { title: "Team", dataIndex: "team", key: "team" },
 ];
 
