@@ -91,7 +91,10 @@ const RankingsTable = ({
         columns={columns}
         loading={loading}
         rowKey={"name"}
-        pagination={{ defaultPageSize: 20 }}
+        pagination={{
+          pageSize: 50,
+          showSizeChanger: false,
+        }}
         expandable={{
           expandedRowRender: (record) => (
             <div style={{ maxWidth: 650, overflow: "scroll" }}>
