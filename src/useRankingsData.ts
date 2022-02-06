@@ -29,11 +29,11 @@ const useRankingsData = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const fetchRankingsData = useCallback(async () => {
+  const fetchRankingsData = useCallback(async ({ year }: { year: string }) => {
     setLoading(true);
     setError(false);
     try {
-      const json = await fetch(`${API_URL}/player-data`);
+      const json = await fetch(`${API_URL}/player-data?year=${year}`);
       const res = await json.json();
       const data = res.data;
       setData(data);

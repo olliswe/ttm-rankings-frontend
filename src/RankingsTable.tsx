@@ -25,7 +25,7 @@ const individualResultsColumns: ColumnsType<IndividualResult> = [
     dataIndex: "placement",
   },
   {
-    title: "TTM-Punkte",
+    title: "Punkte",
     dataIndex: "ttm_points",
     render: (value) => value.toFixed(2),
   },
@@ -46,7 +46,7 @@ const individualResultsColumns: ColumnsType<IndividualResult> = [
 ];
 
 const columns: ColumnsType<RankingsData> = [
-  { title: "TTM-Ranking", dataIndex: "ttm_ranking", key: "ttm_ranking" },
+  { title: "Ranking", dataIndex: "ttm_ranking", key: "ttm_ranking" },
   {
     title: "Name",
     dataIndex: "name",
@@ -54,7 +54,7 @@ const columns: ColumnsType<RankingsData> = [
     sorter: (a, b) => (a.name < b.name ? -1 : 1),
   },
   {
-    title: "TTM-Punkte",
+    title: "Punkte",
     render: (value) => value.toFixed(2),
     dataIndex: "total_points",
     sorter: (a, b) => a.total_points - b.total_points,
