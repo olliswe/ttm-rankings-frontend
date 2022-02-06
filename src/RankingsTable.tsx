@@ -94,7 +94,7 @@ const RankingsTable = ({
         pagination={{ defaultPageSize: 20 }}
         expandable={{
           expandedRowRender: (record) => (
-            <div style={{ maxWidth: 510, overflow: "scroll" }}>
+            <div style={{ maxWidth: 650, overflow: "scroll" }}>
               <Table<IndividualResult>
                 dataSource={record.individual_results}
                 columns={individualResultsColumns}
