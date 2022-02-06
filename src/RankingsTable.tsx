@@ -14,7 +14,11 @@ const individualResultsColumns: ColumnsType<IndividualResult> = [
     sortDirections: ["descend"],
     showSorterTooltip: false,
   },
-  { title: "Turnier", key: "tournament_name", dataIndex: "tournament_name" },
+  {
+    title: "Turnier",
+    key: "tournament_name",
+    dataIndex: "tournament_name",
+  },
   {
     title: "Plazierung",
     key: "placement",
@@ -62,12 +66,6 @@ const columns: ColumnsType<RankingsData> = [
     key: "nr_tournaments",
     sorter: (a, b) => a.nr_tournaments - b.nr_tournaments,
   },
-  {
-    title: "Anz. Runden",
-    dataIndex: "total_rounds_played",
-    key: "total_rounds_played",
-    sorter: (a, b) => a.total_rounds_played - b.total_rounds_played,
-  },
 ];
 
 const RankingsTable = ({
@@ -96,12 +94,14 @@ const RankingsTable = ({
         pagination={{ defaultPageSize: 20 }}
         expandable={{
           expandedRowRender: (record) => (
-            <Table<IndividualResult>
-              dataSource={record.individual_results}
-              columns={individualResultsColumns}
-              rowKey={"tournament_name"}
-              pagination={false}
-            />
+            <div style={{ maxWidth: 510, overflow: "scroll" }}>
+              <Table<IndividualResult>
+                dataSource={record.individual_results}
+                columns={individualResultsColumns}
+                rowKey={"tournament_name"}
+                pagination={false}
+              />
+            </div>
           ),
           rowExpandable: () => true,
         }}

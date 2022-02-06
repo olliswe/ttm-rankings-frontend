@@ -11,7 +11,7 @@ const App = () => {
   }, [fetchRankingsData]);
 
   return (
-    <div style={{ margin: 20 }}>
+    <div style={{ margin: 20, maxWidth: 270 }}>
       <RankingsTable loading={loading} dataSource={data} />
     </div>
   );
