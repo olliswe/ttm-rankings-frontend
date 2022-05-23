@@ -17,7 +17,7 @@ const options = {
   // ignoreLocation: false,
   // ignoreFieldNorm: false,
   // fieldNormWeight: 1,
-  keys: ["name"],
+  keys: ["display_name"],
 };
 
 interface INameSearch {

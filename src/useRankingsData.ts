@@ -17,7 +17,8 @@ export interface IndividualResult {
 }
 
 export interface RankingsData {
-  name: string;
+  display_name:string;
+  identifier: string;
   total_points: number;
   nr_tournaments: number;
   total_rounds_played: number;

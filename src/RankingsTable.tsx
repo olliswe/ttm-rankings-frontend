@@ -49,9 +49,9 @@ const columns: ColumnsType<RankingsData> = [
   { title: "Ranking", dataIndex: "ttm_ranking", key: "ttm_ranking" },
   {
     title: "Name",
-    dataIndex: "name",
-    key: "name",
-    sorter: (a, b) => (a.name < b.name ? -1 : 1),
+    dataIndex: "display_name",
+    key: "display_name",
+    sorter: (a, b) => (a.display_name < b.display_name ? -1 : 1),
   },
   {
     title: "Punkte",
@@ -90,7 +90,7 @@ const RankingsTable = ({
         dataSource={results}
         columns={columns}
         loading={loading}
-        rowKey={"name"}
+        rowKey={"identifier"}
         pagination={{
           pageSize: 50,
           showSizeChanger: false,
