@@ -3,6 +3,7 @@ import { ColumnsType } from "antd/es/table";
 import { Table } from "antd";
 import { IndividualResult, RankingsData } from "./useRankingsData";
 import NameSearch from "./NameSearch";
+import { CaretDownFilled, CaretUpFilled } from "@ant-design/icons";
 
 const individualResultsColumns: ColumnsType<IndividualResult> = [
   {
@@ -45,9 +46,36 @@ const individualResultsColumns: ColumnsType<IndividualResult> = [
   { title: "Team", dataIndex: "team", key: "team" },
 ];
 
+const getRankingIcon = (record: RankingsData) => {
+  if (record.last_week_ttm_ranking > record.ttm_ranking)
+    return <CaretUpFilled style={{ color: "green" }} />;
+  if (record.last_week_ttm_ranking < record.ttm_ranking)
+    return <CaretDownFilled style={{ color: "red" }} />;
+  return <></>;
+};
+
 const columns: ColumnsType<RankingsData> = [
   { title: "Ranking", dataIndex: "ttm_ranking", key: "ttm_ranking" },
-  {title:"Last week", dataIndex:"last_week_ttm_ranking", key: "last_week_ttm_ranking"},
+  {
+    title: "Vorwoche",
+    dataIndex: "last_week_ttm_ranking",
+    key: "last_week_ttm_ranking",
+    render: (text, record) => (
+      <>
+        <div
+          style={{
+            color: "grey",
+            opacity: 0.5,
+            width: 30,
+            display: "inline-block",
+          }}
+        >
+          {text}
+        </div>
+        {getRankingIcon(record)}
+      </>
+    ),
+  },
   {
     title: "Name",
     dataIndex: "display_name",

@@ -12,17 +12,18 @@ export interface IndividualResult {
   team: string;
   tournament_name: string;
   tournament_type: string;
-  ttm_ranking: number;
   ttm_points: number;
 }
 
 export interface RankingsData {
-  display_name:string;
+  display_name: string;
   identifier: string;
   total_points: number;
   nr_tournaments: number;
   total_rounds_played: number;
   individual_results: IndividualResult[];
+  last_week_ttm_ranking: number;
+  ttm_ranking: number;
 }
 
 const useRankingsData = () => {
