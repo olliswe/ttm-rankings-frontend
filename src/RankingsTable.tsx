@@ -47,6 +47,7 @@ const individualResultsColumns: ColumnsType<IndividualResult> = [
 
 const columns: ColumnsType<RankingsData> = [
   { title: "Ranking", dataIndex: "ttm_ranking", key: "ttm_ranking" },
+  {title:"Last week", dataIndex:"last_week_ttm_ranking", key: "last_week_ttm_ranking"},
   {
     title: "Name",
     dataIndex: "display_name",
