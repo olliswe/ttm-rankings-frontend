@@ -7,7 +7,7 @@ import RankingsTable from "./RankingsTable";
 const { TabPane } = Tabs;
 
 const IMPLEMENTED_YEARS = ["2022", "2021"];
-const PRE_YEARS = ["2019", "2018", "2017", "2016"];
+const PRE_YEARS = ["2019"];
 
 const App = () => {
   const [activeKey, setActiveKey] = useState(IMPLEMENTED_YEARS[0]);
