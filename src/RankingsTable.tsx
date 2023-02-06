@@ -91,6 +91,7 @@ const columns: ColumnsType<RankingsData> = [
   },
   {
     title: "Anz. Turniere",
+    render: (value) => `${value}/5`,
     dataIndex: "nr_tournaments",
     key: "nr_tournaments",
     sorter: (a, b) => a.nr_tournaments - b.nr_tournaments,
