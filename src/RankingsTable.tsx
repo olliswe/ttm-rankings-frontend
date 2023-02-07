@@ -20,7 +20,7 @@ const individualResultsColumns: ColumnsType<IndividualResult> = [
     key: "tournament_name",
     dataIndex: "tournament_name",
     render: (value) => {
-      return <a href="https://www.google.com/">{value}</a>
+      return <a href={`https://www.google.com/${tourname_type}`}>{value}</a>
     }
   },
   {
