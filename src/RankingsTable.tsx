@@ -19,6 +19,9 @@ const individualResultsColumns: ColumnsType<IndividualResult> = [
     title: "Turnier",
     key: "tournament_name",
     dataIndex: "tournament_name",
+    render: (value) => {
+      return <a href="https://www.google.com/">{value}</a>
+    }
   },
   {
     title: "Plazierung",
