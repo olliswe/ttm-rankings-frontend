@@ -4,6 +4,7 @@ import { Table } from "antd";
 import { IndividualResult, RankingsData } from "./useRankingsData";
 import NameSearch from "./NameSearch";
 import { CaretDownFilled, CaretUpFilled } from "@ant-design/icons";
+import "./table.css";
 
 const individualResultsColumns: ColumnsType<IndividualResult> = [
   {
@@ -133,6 +134,20 @@ const RankingsTable = ({
                 columns={individualResultsColumns}
                 rowKey={"tournament_name"}
                 pagination={false}
+                rowClassName={(record) =>
+                  record.tournament_id ? "clickable" : ""
+                }
+                onRow={(record) => ({
+                  ...(record.tournament_id
+                    ? {
+                        onClick: () =>
+                          window.open(
+                            `https://www.bestcoastpairings.com/event/${record.tournament_id}`,
+                            "_blank"
+                          ),
+                      }
+                    : {}),
+                })}
               />
             </div>
           ),
