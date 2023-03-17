@@ -97,6 +97,12 @@ const columns: ColumnsType<RankingsData> = [
     key: "nr_tournaments",
     sorter: (a, b) => a.nr_tournaments - b.nr_tournaments,
   },
+  {
+    title: "Team",
+    key: "team",
+    render: (value, record) =>
+      record.individual_results.find((x) => !!x.team)?.team || "",
+  },
 ];
 
 const RankingsTable = ({
