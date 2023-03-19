@@ -125,6 +125,7 @@ const RankingsTable = ({
       </div>
       <Table<RankingsData>
         dataSource={results}
+        scroll={{ x: true }}
         columns={columns}
         loading={loading}
         rowKey={"identifier"}
