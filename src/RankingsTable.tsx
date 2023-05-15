@@ -22,7 +22,7 @@ const individualResultsColumns: ColumnsType<IndividualResult> = [
     dataIndex: "tournament_name",
   },
   {
-    title: "Plazierung",
+    title: "Platzierung",
     key: "placement",
     dataIndex: "placement",
   },
@@ -32,7 +32,7 @@ const individualResultsColumns: ColumnsType<IndividualResult> = [
     render: (value) => value.toFixed(2),
   },
   {
-    title: "Faktion",
+    title: "Fraktion",
     key: "faction",
     dataIndex: "faction",
   },
