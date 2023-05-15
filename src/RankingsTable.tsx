@@ -21,11 +21,21 @@ const individualResultsColumns: ColumnsType<IndividualResult> = [
     key: "tournament_name",
     dataIndex: "tournament_name",
   },
+  { title: "Typ", dataIndex: "tournament_type", key: "tournament_type" },
   {
     title: "Platzierung",
     key: "placement",
-    dataIndex: "placement",
+    render: (text, record) => (
+      <span>{record.placement}/{record.players}</span>
+    )
   },
+  // "wins" to be added in api repo
+  // { title: "Siege",
+  //   render: (text,record) => (
+  //     <span>{record.wins} {record.wins ? "/" : "? /"}{record.rounds}</span>
+  //   )
+  // },
+  { title: "Anz. Runden", dataIndex: "rounds", key: "rouns" },
   {
     title: "Punkte",
     dataIndex: "ttm_points",
@@ -36,15 +46,18 @@ const individualResultsColumns: ColumnsType<IndividualResult> = [
     key: "faction",
     dataIndex: "faction",
   },
-  {
-    title: "Spielgröße",
-    render: (value) => `${value}pts`,
-    dataIndex: "battle_size",
+  // {
+  //   title: "Spielgröße",
+  //   render: (value) => `${value}pts`,
+  //   dataIndex: "battle_size",
+  // },
+  { title: "Team", 
+    dataIndex: "team", 
+    key: "team", 
+    render: (value) => (
+      <div style={{width: 150}}>{value}</div>
+    ) 
   },
-  { title: "Typ", dataIndex: "tournament_type", key: "tournament_type" },
-  { title: "Anz. Spieler", dataIndex: "players", key: "players" },
-  { title: "Anz. Runden", dataIndex: "rounds", key: "rouns" },
-  { title: "Team", dataIndex: "team", key: "team" },
 ];
 
 const getRankingIcon = (record: RankingsData) => {
