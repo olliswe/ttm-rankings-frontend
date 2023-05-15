@@ -20,12 +20,9 @@ const individualResultsColumns: ColumnsType<IndividualResult> = [
     title: "Turnier",
     key: "tournament_name",
     dataIndex: "tournament_name",
-    render: (value) => {
-      return <a href={`https://www.google.com/${tourname_type}`}>{value}</a>
-    }
   },
   {
-    title: "Plazierung",
+    title: "Platzierung",
     key: "placement",
     dataIndex: "placement",
   },
@@ -35,7 +32,7 @@ const individualResultsColumns: ColumnsType<IndividualResult> = [
     render: (value) => value.toFixed(2),
   },
   {
-    title: "Faktion",
+    title: "Fraktion",
     key: "faction",
     dataIndex: "faction",
   },
