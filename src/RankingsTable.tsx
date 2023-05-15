@@ -4,6 +4,7 @@ import { Table } from "antd";
 import { IndividualResult, RankingsData } from "./useRankingsData";
 import NameSearch from "./NameSearch";
 import { CaretDownFilled, CaretUpFilled } from "@ant-design/icons";
+import "./table.css";
 
 const individualResultsColumns: ColumnsType<IndividualResult> = [
   {
@@ -99,6 +100,12 @@ const columns: ColumnsType<RankingsData> = [
     key: "nr_tournaments",
     sorter: (a, b) => a.nr_tournaments - b.nr_tournaments,
   },
+  {
+    title: "Team",
+    key: "team",
+    render: (value, record) =>
+      record.individual_results.find((x) => !!x.team)?.team || "",
+  },
 ];
 
 const RankingsTable = ({
@@ -121,6 +128,7 @@ const RankingsTable = ({
       </div>
       <Table<RankingsData>
         dataSource={results}
+        scroll={{ x: true }}
         columns={columns}
         loading={loading}
         rowKey={"identifier"}
@@ -136,6 +144,20 @@ const RankingsTable = ({
                 columns={individualResultsColumns}
                 rowKey={"tournament_name"}
                 pagination={false}
+                rowClassName={(record) =>
+                  record.tournament_id ? "clickable" : ""
+                }
+                onRow={(record) => ({
+                  ...(record.tournament_id
+                    ? {
+                        onClick: () =>
+                          window.open(
+                            `https://www.bestcoastpairings.com/event/${record.tournament_id}`,
+                            "_blank"
+                          ),
+                      }
+                    : {}),
+                })}
               />
             </div>
           ),

@@ -13,6 +13,7 @@ export interface IndividualResult {
   tournament_name: string;
   tournament_type: string;
   ttm_points: number;
+  tournament_id: string;
 }
 
 export interface RankingsData {
