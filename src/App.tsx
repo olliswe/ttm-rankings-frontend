@@ -18,7 +18,7 @@ const App = () => {
   }, [fetchRankingsData, activeKey]);
 
   return (
-    <div style={{ maxWidth: 720, maxHeight: 3000, overflow: "scroll" }}>
+    <div style={{ maxWidth: 700, maxHeight: 3000 }}>
       <Tabs activeKey={activeKey} onChange={setActiveKey}>
         {IMPLEMENTED_YEARS.map((year) => (
           <TabPane tab={year} key={year}>
