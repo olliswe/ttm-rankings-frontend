@@ -46,7 +46,12 @@ const individualResultsColumns: ColumnsType<IndividualResult> = [
   },
   {
     title: "Siege",
-    render: (text, record) => <span>{`${record.wins}/${record.rounds}`}</span>,
+    render: (text, record) =>
+      Number.isInteger(record.wins) ? (
+        <span>{`${record.wins}/${record.rounds}`}</span>
+      ) : (
+        "N/A"
+      ),
   },
   // { title: "Anz. Runden", dataIndex: "rounds", key: "rouns" },
   {
