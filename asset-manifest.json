@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/ttm-rankings-frontend/static/css/main.ad828433.css",
-    "main.js": "/ttm-rankings-frontend/static/js/main.72f11329.js",
+    "main.js": "/ttm-rankings-frontend/static/js/main.80beda58.js",
     "index.html": "/ttm-rankings-frontend/index.html",
     "main.ad828433.css.map": "/ttm-rankings-frontend/static/css/main.ad828433.css.map",
-    "main.72f11329.js.map": "/ttm-rankings-frontend/static/js/main.72f11329.js.map"
+    "main.80beda58.js.map": "/ttm-rankings-frontend/static/js/main.80beda58.js.map"
   },
   "entrypoints": [
     "static/css/main.ad828433.css",
-    "static/js/main.72f11329.js"
+    "static/js/main.80beda58.js"
   ]
 }
