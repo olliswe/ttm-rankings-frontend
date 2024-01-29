@@ -6,7 +6,7 @@ import RankingsTable from "./RankingsTable";
 
 const { TabPane } = Tabs;
 
-const IMPLEMENTED_YEARS = ["2023", "2022", "2021"];
+const IMPLEMENTED_YEARS = ["2024", "2023", "2022", "2021"];
 const PRE_YEARS = ["2019"];
 
 const App = () => {

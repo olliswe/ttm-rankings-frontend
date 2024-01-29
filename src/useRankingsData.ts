@@ -14,6 +14,7 @@ export interface IndividualResult {
   tournament_type: string;
   ttm_points: number;
   tournament_id: string;
+  wins: number;
 }
 
 export interface RankingsData {
@@ -23,7 +24,6 @@ export interface RankingsData {
   nr_tournaments: number;
   total_rounds_played: number;
   individual_results: IndividualResult[];
-  last_week_ttm_ranking: number;
   ttm_ranking: number;
 }
 

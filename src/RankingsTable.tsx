@@ -3,7 +3,6 @@ import { ColumnsType } from "antd/es/table";
 import { Table } from "antd";
 import { IndividualResult, RankingsData } from "./useRankingsData";
 import NameSearch from "./NameSearch";
-import { CaretDownFilled, CaretUpFilled } from "@ant-design/icons";
 import "./table.css";
 
 const individualResultsColumns: ColumnsType<IndividualResult> = [
@@ -26,15 +25,15 @@ const individualResultsColumns: ColumnsType<IndividualResult> = [
     title: "Platzierung",
     key: "placement",
     render: (text, record) => (
-      <span>{record.placement}/{record.players}</span>
-    )
+      <span>
+        {record.placement}/{record.players}
+      </span>
+    ),
   },
-  // "wins" to be added in api repo
-  // { title: "Siege",
-  //   render: (text,record) => (
-  //     <span>{record.wins} {record.wins ? "/" : "? /"}{record.rounds}</span>
-  //   )
-  // },
+  {
+    title: "Siege",
+    render: (text, record) => <span>{`${record.wins}/${record.rounds}`}</span>,
+  },
   { title: "Anz. Runden", dataIndex: "rounds", key: "rouns" },
   {
     title: "Punkte",
@@ -51,45 +50,16 @@ const individualResultsColumns: ColumnsType<IndividualResult> = [
   //   render: (value) => `${value}pts`,
   //   dataIndex: "battle_size",
   // },
-  { title: "Team", 
-    dataIndex: "team", 
-    key: "team", 
-    render: (value) => (
-      <div style={{width: 150}}>{value}</div>
-    ) 
+  {
+    title: "Team",
+    dataIndex: "team",
+    key: "team",
+    render: (value) => <div style={{ width: 150 }}>{value}</div>,
   },
 ];
 
-const getRankingIcon = (record: RankingsData) => {
-  if (record.last_week_ttm_ranking > record.ttm_ranking)
-    return <CaretUpFilled style={{ color: "green" }} />;
-  if (record.last_week_ttm_ranking < record.ttm_ranking)
-    return <CaretDownFilled style={{ color: "red" }} />;
-  return <></>;
-};
-
 const columns: ColumnsType<RankingsData> = [
   { title: "Ranking", dataIndex: "ttm_ranking", key: "ttm_ranking" },
-  {
-    title: "Vorwoche",
-    dataIndex: "last_week_ttm_ranking",
-    key: "last_week_ttm_ranking",
-    render: (text, record) => (
-      <>
-        <div
-          style={{
-            color: "grey",
-            opacity: 0.5,
-            width: 30,
-            display: "inline-block",
-          }}
-        >
-          {text}
-        </div>
-        {getRankingIcon(record)}
-      </>
-    ),
-  },
   {
     title: "Name",
     dataIndex: "display_name",
