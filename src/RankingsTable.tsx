@@ -5,14 +5,28 @@ import { IndividualResult, RankingsData } from "./useRankingsData";
 import NameSearch from "./NameSearch";
 import "./table.css";
 
+const convertDateFormat = (dateString: string): string => {
+  const parts: string[] = dateString.split("-");
+  return `${parts[2]}.${parts[1]}.${parts[0]}`;
+};
+
 const individualResultsColumns: ColumnsType<IndividualResult> = [
+  {
+    title: "Punkte",
+    dataIndex: "ttm_points",
+    sorter: (a, b) => a.ttm_points - b.ttm_points,
+    defaultSortOrder: "descend",
+    sortDirections: ["descend", "ascend"],
+    render: (value) => value.toFixed(2),
+    showSorterTooltip: false,
+  },
   {
     title: "Datum",
     key: "date",
     dataIndex: "date",
+    render: (value, record) => convertDateFormat(record.date),
     sorter: (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
-    sortOrder: "descend",
-    sortDirections: ["descend"],
+    sortDirections: ["descend", "ascend"],
     showSorterTooltip: false,
   },
   {
@@ -34,12 +48,7 @@ const individualResultsColumns: ColumnsType<IndividualResult> = [
     title: "Siege",
     render: (text, record) => <span>{`${record.wins}/${record.rounds}`}</span>,
   },
-  { title: "Anz. Runden", dataIndex: "rounds", key: "rouns" },
-  {
-    title: "Punkte",
-    dataIndex: "ttm_points",
-    render: (value) => value.toFixed(2),
-  },
+  // { title: "Anz. Runden", dataIndex: "rounds", key: "rouns" },
   {
     title: "Fraktion",
     key: "faction",
