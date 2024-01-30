@@ -10,6 +10,14 @@ const convertDateFormat = (dateString: string): string => {
   return `${parts[2]}.${parts[1]}.${parts[0]}`;
 };
 
+const getNumberOfWins = (individualResult: IndividualResult) => {
+  const stringWins = String(individualResult.wins);
+  if (stringWins === "") {
+    return "?";
+  }
+  return stringWins;
+};
+
 const individualResultsColumns: ColumnsType<IndividualResult> = [
   {
     title: "Punkte",
@@ -46,12 +54,9 @@ const individualResultsColumns: ColumnsType<IndividualResult> = [
   },
   {
     title: "Siege",
-    render: (text, record) =>
-      Number.isInteger(record.wins) ? (
-        <span>{`${record.wins}/${record.rounds}`}</span>
-      ) : (
-        "N/A"
-      ),
+    render: (text, record) => (
+      <span>{`${getNumberOfWins(record)}/${record.rounds}`}</span>
+    ),
   },
   // { title: "Anz. Runden", dataIndex: "rounds", key: "rouns" },
   {
