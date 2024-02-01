@@ -18,7 +18,7 @@ const SinglesRanking = ({
 
   useEffect(() => {
     fetchRankingsData({ year: activeKey, country });
-  }, [fetchRankingsData, activeKey]);
+  }, [fetchRankingsData, activeKey, country]);
 
   return (
     <div style={{ maxWidth: 720, maxHeight: 3000, overflow: "scroll" }}>
