@@ -32,20 +32,23 @@ const useRankingsData = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const fetchRankingsData = useCallback(async ({ year }: { year: string }) => {
-    setLoading(true);
-    setError(false);
-    try {
-      const json = await fetch(`${API_URL}/player-data?year=${year}`);
-      const res = await json.json();
-      const data = res.data;
-      setData(data);
-    } catch (error) {
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+  const fetchRankingsData = useCallback(
+    async ({ year, country }: { year: string; country: string }) => {
+      setLoading(true);
+      setError(false);
+      try {
+        const json = await fetch(`${API_URL}/player-data?year=${year}&country=${country}`);
+        const res = await json.json();
+        const data = res.data;
+        setData(data);
+      } catch (error) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    },
+    []
+  );
 
   return { error, loading, data, fetchRankingsData };
 };
