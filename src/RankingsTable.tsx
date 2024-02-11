@@ -4,6 +4,7 @@ import { Table } from "antd";
 import { IndividualResult, RankingsData } from "./useRankingsData";
 import NameSearch from "./NameSearch";
 import "./table.css";
+import clsx from "clsx";
 
 const convertDateFormat = (dateString: string): string => {
   const parts: string[] = dateString.split("-");
@@ -18,6 +19,19 @@ const getNumberOfWins = (individualResult: IndividualResult) => {
   return stringWins;
 };
 
+const isResultCounted = ({
+  individualResults,
+  result,
+}: {
+  individualResults: IndividualResult[];
+  result: IndividualResult;
+}) => {
+  if (!result.result_id) {
+    return true;
+  }
+  return individualResults.find((x) => x.result_id === result.result_id);
+};
+
 const individualResultsColumns: ColumnsType<IndividualResult> = [
   {
     title: "Punkte",
@@ -27,6 +41,7 @@ const individualResultsColumns: ColumnsType<IndividualResult> = [
     sortDirections: ["descend", "ascend"],
     render: (value) => value.toFixed(2),
     showSorterTooltip: false,
+    className: "custom-first-column",
   },
   {
     title: "Datum",
@@ -139,12 +154,18 @@ const RankingsTable = ({
           expandedRowRender: (record) => (
             <div style={{ maxWidth: 650, overflow: "scroll" }}>
               <Table<IndividualResult>
-                dataSource={record.individual_results}
+                dataSource={record.all_results || record.individual_results}
                 columns={individualResultsColumns}
                 rowKey={"tournament_name"}
                 pagination={false}
-                rowClassName={(record) =>
-                  record.tournament_id ? "clickable" : ""
+                rowClassName={(result) =>
+                  clsx(
+                    result.tournament_id && "clickable",
+                    !isResultCounted({
+                      individualResults: record.individual_results,
+                      result: result,
+                    }) && "result-not-counted"
+                  )
                 }
                 onRow={(record) => ({
                   ...(record.tournament_id
