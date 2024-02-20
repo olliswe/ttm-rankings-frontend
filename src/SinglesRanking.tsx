@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback } from "react";
 import { Country } from "./constants";
 import useRankingsData from "./useRankingsData";
-import { Tabs } from "antd";
 import RankingsTable from "./RankingsTable";
-
-const { TabPane } = Tabs;
+import YearTabs from "./components/YearTabs";
 
 const SinglesRanking = ({
   years,
@@ -13,25 +11,19 @@ const SinglesRanking = ({
   years: string[];
   country: Country;
 }) => {
-  const [activeKey, setActiveKey] = useState(years[0]);
   const { fetchRankingsData, data, loading } = useRankingsData();
 
-  useEffect(() => {
-    fetchRankingsData({ year: activeKey, country });
-  }, [fetchRankingsData, activeKey, country]);
+  const fetchData = useCallback(
+    (year: string) => {
+      fetchRankingsData({ year, country });
+    },
+    [fetchRankingsData, country]
+  );
 
   return (
-    <div style={{ maxWidth: 720, maxHeight: 3000, overflow: "scroll" }}>
-      <Tabs activeKey={activeKey} onChange={setActiveKey}>
-        {years.map((year) => (
-          <TabPane tab={year} key={year}>
-            {activeKey === year && (
-              <RankingsTable loading={loading} dataSource={data} />
-            )}
-          </TabPane>
-        ))}
-      </Tabs>
-    </div>
+    <YearTabs years={years} fetchData={fetchData}>
+      <RankingsTable dataSource={data} loading={loading} />
+    </YearTabs>
   );
 };
 
