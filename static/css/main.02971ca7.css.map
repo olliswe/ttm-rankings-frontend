@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.02971ca7.css","mappings":"AAAA,WACE,cACF,CAEA,6CACE,4BACF,CAEA,oBACE,4BACF","sources":["table.css"],"sourcesContent":[".clickable {\n  cursor: pointer;\n}\n\n.ant-table-tbody > tr > td.ant-table-column-sort {\n  background-color: transparent;\n}\n\n.result-not-counted {\n  background: rgba(255, 0, 0, 0.05);\n}\n"],"names":[],"sourceRoot":""}
