@@ -22,6 +22,7 @@ const columns: ColumnsType<TeamRanking> = [
   {
     title: "#Spieler",
     dataIndex: "players",
+    render: (value) => `${value}/8`,
     sorter: (a, b) => a.players - b.players,
   },
   {
