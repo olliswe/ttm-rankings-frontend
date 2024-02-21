@@ -1,17 +1,17 @@
 import React, { useCallback } from "react";
+import useTeamsRankingsData from "./useTeamsRankingsData";
 import { Country } from "./constants";
-import useRankingsData from "./useRankingsData";
-import SinglesRankingsTable from "./SinglesRankingsTable";
 import YearTabs from "./components/YearTabs";
+import TeamsRankingsTable from "./TeamsRankingsTable";
 
-const SinglesRanking = ({
+const TeamsRanking = ({
   years,
   country,
 }: {
   years: string[];
   country: Country;
 }) => {
-  const { fetchRankingsData, data, loading } = useRankingsData();
+  const { fetchRankingsData, data, loading } = useTeamsRankingsData();
 
   const fetchData = useCallback(
     (year: string) => {
@@ -19,12 +19,11 @@ const SinglesRanking = ({
     },
     [fetchRankingsData, country]
   );
-
   return (
     <YearTabs years={years} fetchData={fetchData}>
-      <SinglesRankingsTable dataSource={data} loading={loading} />
+      <TeamsRankingsTable dataSource={data} loading={loading} />
     </YearTabs>
   );
 };
 
-export default SinglesRanking;
+export default TeamsRanking;

@@ -39,7 +39,9 @@ const useRankingsData = () => {
       setLoading(true);
       setError(false);
       try {
-        const json = await fetch(`${API_URL}/player-data?year=${year}&country=${country}`);
+        const json = await fetch(
+          `${API_URL}/player-data?year=${year}&country=${country}`
+        );
         const res = await json.json();
         const data = res.data;
         setData(data);

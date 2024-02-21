@@ -1,33 +1,39 @@
 import Fuse from "fuse.js";
 import React, { useEffect, useRef, useState } from "react";
-import { RankingsData } from "./useRankingsData";
 import { Input } from "antd";
 
-const options = {
-  // isCaseSensitive: false,
-  // includeScore: false,
-  // shouldSort: true,
-  // includeMatches: false,
-  // findAllMatches: true,
-  // minMatchCharLength: 1,
-  // location: 0,
-  threshold: 0.2,
-  // distance: 100,
-  // useExtendedSearch: false,
-  // ignoreLocation: false,
-  // ignoreFieldNorm: false,
-  // fieldNormWeight: 1,
-  keys: ["display_name"],
-};
-
-interface INameSearch {
-  fullDataSet: RankingsData[];
+interface INameSearch<T> {
+  fullDataSet: T[];
   setResults: (result: any) => void;
+  placeholder: string;
+  searchKey: string;
 }
 
-const NameSearch = ({ fullDataSet, setResults }: INameSearch) => {
+const NameSearch = <T,>({
+  fullDataSet,
+  setResults,
+  placeholder,
+  searchKey,
+}: INameSearch<T>) => {
   const [searchText, setSearchText] = useState("");
   const fuseRef = useRef<Fuse<unknown>>();
+
+  const options = {
+    // isCaseSensitive: false,
+    // includeScore: false,
+    // shouldSort: true,
+    // includeMatches: false,
+    // findAllMatches: true,
+    // minMatchCharLength: 1,
+    // location: 0,
+    threshold: 0.2,
+    // distance: 100,
+    // useExtendedSearch: false,
+    // ignoreLocation: false,
+    // ignoreFieldNorm: false,
+    // fieldNormWeight: 1,
+    keys: [searchKey],
+  };
 
   const onChange = (e: any) => {
     setSearchText(e.target.value);
@@ -48,7 +54,7 @@ const NameSearch = ({ fullDataSet, setResults }: INameSearch) => {
       allowClear
       onChange={onChange}
       value={searchText}
-      placeholder="Spieler Name/nickname Suchen"
+      placeholder={placeholder}
     />
   );
 };
