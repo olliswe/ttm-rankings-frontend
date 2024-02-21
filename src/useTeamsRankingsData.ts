@@ -3,6 +3,7 @@ import { API_URL } from "./constants";
 import { IndividualResult } from "./useRankingsData";
 
 export interface TeamRanking {
+  ranking: number;
   points: number;
   players: number;
   tournaments: number;

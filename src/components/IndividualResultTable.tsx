@@ -43,7 +43,7 @@ const individualResultsColumns: ColumnsType<IndividualResult> = [
   },
   { title: "Typ", dataIndex: "tournament_type", key: "tournament_type" },
   {
-    title: "Platzierung",
+    title: "Platz.",
     key: "placement",
     render: (text, record) => (
       <span>

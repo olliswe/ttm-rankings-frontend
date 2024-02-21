@@ -7,6 +7,7 @@ import IndividualResultTable from "./components/IndividualResultTable";
 import { TeamRanking } from "./useTeamsRankingsData";
 
 const columns: ColumnsType<TeamRanking> = [
+  { title: "Ranking", dataIndex: "ranking" },
   {
     title: "Team",
     dataIndex: "team",
