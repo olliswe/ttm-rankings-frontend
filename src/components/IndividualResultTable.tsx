@@ -73,7 +73,11 @@ const individualResultsColumns: ColumnsType<IndividualResult> = [
 const IndividualResultTable = (props: TableProps<IndividualResult>) => {
   return (
     <Table<IndividualResult>
-      columns={individualResultsColumns}
+      {...props}
+      columns={[
+        ...(props.columns ? props.columns : []),
+        ...individualResultsColumns,
+      ]}
       rowKey={"tournament_name"}
       pagination={false}
       onRow={(record) => ({
@@ -87,7 +91,6 @@ const IndividualResultTable = (props: TableProps<IndividualResult>) => {
             }
           : {}),
       })}
-      {...props}
     />
   );
 };

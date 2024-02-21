@@ -50,7 +50,7 @@ const columns: ColumnsType<RankingsData> = [
   },
 ];
 
-const RankingsTable = ({
+const SinglesRankingsTable = ({
   dataSource,
   loading,
 }: {
@@ -66,7 +66,12 @@ const RankingsTable = ({
   return (
     <>
       <div style={{ width: 500, marginBottom: 20 }}>
-        <NameSearch fullDataSet={dataSource} setResults={setResults} />
+        <NameSearch
+          fullDataSet={dataSource}
+          setResults={setResults}
+          searchKey={"display_name"}
+          placeholder={"Spieler*in Name/nickname suchen"}
+        />
       </div>
       <Table<RankingsData>
         dataSource={results}
@@ -102,4 +107,4 @@ const RankingsTable = ({
   );
 };
 
-export default RankingsTable;
+export default SinglesRankingsTable;

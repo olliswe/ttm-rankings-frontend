@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { Country } from "./constants";
 import useRankingsData from "./useRankingsData";
-import RankingsTable from "./RankingsTable";
+import SinglesRankingsTable from "./SinglesRankingsTable";
 import YearTabs from "./components/YearTabs";
 
 const SinglesRanking = ({
@@ -22,7 +22,7 @@ const SinglesRanking = ({
 
   return (
     <YearTabs years={years} fetchData={fetchData}>
-      <RankingsTable dataSource={data} loading={loading} />
+      <SinglesRankingsTable dataSource={data} loading={loading} />
     </YearTabs>
   );
 };

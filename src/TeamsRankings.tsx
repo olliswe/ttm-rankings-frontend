@@ -1,48 +1,29 @@
-import React from "react";
-import { ColumnsType } from "antd/es/table";
-import { IndividualResult } from "./useRankingsData";
+import React, { useCallback } from "react";
+import useTeamsRankingsData from "./useTeamsRankingsData";
+import { Country } from "./constants";
+import YearTabs from "./components/YearTabs";
+import TeamsRankingsTable from "./TeamsRankingsTable";
 
-interface TeamRanking {
-  points: number;
-  players: number;
-  tournaments: number;
-  games: number;
-  all_results: IndividualResult[];
-  team: string;
-  best_results: IndividualResult[];
-}
+const TeamsRanking = ({
+  years,
+  country,
+}: {
+  years: string[];
+  country: Country;
+}) => {
+  const { fetchRankingsData, data, loading } = useTeamsRankingsData();
 
-const columns: ColumnsType<TeamRanking> = [
-  {
-    title: "Team",
-    dataIndex: "team",
-    key: "team",
-  },
-  {
-    title: "Punkte",
-    render: (value) => value.toFixed(2),
-    dataIndex: "points",
-    sorter: (a, b) => a.points - b.points,
-    defaultSortOrder: "descend",
-  },
-  {
-    title: "Anz. Spieler*innen",
-    dataIndex: "players",
-    sorter: (a, b) => a.players - b.players,
-  },
-  {
-    title: "Anz. Turniere",
-    dataIndex: "tournaments",
-    sorter: (a, b) => a.tournaments - b.tournaments,
-  },
-  {
-    title: "Anz. Spiele",
-    dataIndex: "games",
-  },
-];
-
-const MyComponent = () => {
-  return <div></div>;
+  const fetchData = useCallback(
+    (year: string) => {
+      fetchRankingsData({ year, country });
+    },
+    [fetchRankingsData, country]
+  );
+  return (
+    <YearTabs years={years} fetchData={fetchData}>
+      <TeamsRankingsTable dataSource={data} loading={loading} />
+    </YearTabs>
+  );
 };
 
-export default MyComponent;
+export default TeamsRanking;
