@@ -19,17 +19,17 @@ const columns: ColumnsType<TeamRanking> = [
     defaultSortOrder: "descend",
   },
   {
-    title: "Anz. Spieler*innen",
+    title: "#Spieler",
     dataIndex: "players",
     sorter: (a, b) => a.players - b.players,
   },
   {
-    title: "Anz. Turniere",
+    title: "#Turniere",
     dataIndex: "tournaments",
     sorter: (a, b) => a.tournaments - b.tournaments,
   },
   {
-    title: "Anz. Spiele",
+    title: "#Spiele",
     dataIndex: "games",
   },
 ];

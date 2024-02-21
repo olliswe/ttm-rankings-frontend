@@ -2,8 +2,7 @@
   cursor: pointer;
 }
 
-
-td.ant-table-column-sort {
+.ant-table-tbody > tr > td.ant-table-column-sort {
   background-color: transparent;
 }
 

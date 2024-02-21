@@ -1,5 +1,5 @@
 import Fuse from "fuse.js";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Input } from "antd";
 
 interface INameSearch<T> {
@@ -18,22 +18,13 @@ const NameSearch = <T,>({
   const [searchText, setSearchText] = useState("");
   const fuseRef = useRef<Fuse<unknown>>();
 
-  const options = {
-    // isCaseSensitive: false,
-    // includeScore: false,
-    // shouldSort: true,
-    // includeMatches: false,
-    // findAllMatches: true,
-    // minMatchCharLength: 1,
-    // location: 0,
-    threshold: 0.2,
-    // distance: 100,
-    // useExtendedSearch: false,
-    // ignoreLocation: false,
-    // ignoreFieldNorm: false,
-    // fieldNormWeight: 1,
-    keys: [searchKey],
-  };
+  const options = useMemo(
+    () => ({
+      threshold: 0.2,
+      keys: [searchKey],
+    }),
+    [searchKey]
+  );
 
   const onChange = (e: any) => {
     setSearchText(e.target.value);
@@ -47,7 +38,7 @@ const NameSearch = <T,>({
 
   useEffect(() => {
     fuseRef.current = new Fuse(fullDataSet, options);
-  }, [fullDataSet]);
+  }, [fullDataSet, options]);
 
   return (
     <Input

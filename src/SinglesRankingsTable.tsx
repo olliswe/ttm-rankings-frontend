@@ -36,7 +36,7 @@ const columns: ColumnsType<RankingsData> = [
     defaultSortOrder: "descend",
   },
   {
-    title: "Anz. Turniere",
+    title: "Turniere",
     render: (value) => `${value}/5`,
     dataIndex: "nr_tournaments",
     key: "nr_tournaments",
