@@ -70,7 +70,7 @@ const SinglesRankingsTable = ({
           fullDataSet={dataSource}
           setResults={setResults}
           searchKey={"display_name"}
-          placeholder={"Spieler*in Name/nickname suchen"}
+          placeholder={"Spieler*in Name suchen"}
         />
       </div>
       <Table<RankingsData>
