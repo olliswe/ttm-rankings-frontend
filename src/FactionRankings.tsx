@@ -5,9 +5,10 @@ import useFactionRankingsData, {
   FactionRanking,
 } from "./useFactionRankingsData";
 import { Select } from "antd";
+import FactionRankingsTable from "./FactionRankingsTable";
 
 const FactionRankingSelector = ({ data }: { data: FactionRanking }) => {
-  const factionsList = useMemo(() => Object.keys(data), [data]);
+  const factionsList = useMemo(() => Object.keys(data).sort(), [data]);
   const [selectedFaction, setSelectedFaction] = React.useState(factionsList[0]);
 
   const factionData = useMemo(
@@ -24,13 +25,14 @@ const FactionRankingSelector = ({ data }: { data: FactionRanking }) => {
         }))}
         value={selectedFaction}
         onChange={(value) => setSelectedFaction(value)}
+        style={{ width: 250 }}
       />
-      ;
+      <FactionRankingsTable dataSource={factionData} />
     </div>
   );
 };
 
-const FactionRanking = ({
+const FactionRankings = ({
   years,
   country,
 }: {
@@ -52,4 +54,4 @@ const FactionRanking = ({
   );
 };
 
-export default FactionRanking;
+export default FactionRankings;

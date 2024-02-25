@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { API_URL } from "./constants";
 import { IndividualResult } from "./useRankingsData";
 
-interface FactionIndividualRanking {
+export interface FactionIndividualRanking {
   results: IndividualResult[];
   total_points: number;
   all_results: IndividualResult[];
