@@ -22,7 +22,7 @@ const columns: ColumnsType<FactionIndividualRanking> = [
     defaultSortOrder: "descend",
   },
   {
-    title: "#Spiele",
+    title: "Anz. Turniere",
     dataIndex: "games",
     render: (value, record) => `${record.all_results.length}/5`,
   },
