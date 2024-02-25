@@ -1,32 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { ColumnsType } from "antd/es/table";
 import { Table } from "antd";
-import { IndividualResult, RankingsData } from "./useRankingsData";
 import NameSearch from "./NameSearch";
 import "./table.css";
-import clsx from "clsx";
 import IndividualResultTable from "./components/IndividualResultTable";
+import { FactionIndividualRanking } from "./useFactionRankingsData";
+import clsx from "clsx";
+import { isResultCounted } from "./SinglesRankingsTable";
 
-export const isResultCounted = ({
-  individualResults,
-  result,
-}: {
-  individualResults: IndividualResult[];
-  result: IndividualResult;
-}) => {
-  if (!result.result_id) {
-    return true;
-  }
-  return individualResults.find((x) => x.result_id === result.result_id);
-};
-
-const columns: ColumnsType<RankingsData> = [
-  { title: "Ranking", dataIndex: "ttm_ranking", key: "ttm_ranking" },
+const columns: ColumnsType<FactionIndividualRanking> = [
+  { title: "Ranking", dataIndex: "ttm_ranking" },
   {
     title: "Name",
     dataIndex: "display_name",
-    key: "display_name",
-    sorter: (a, b) => (a.display_name < b.display_name ? -1 : 1),
   },
   {
     title: "Punkte",
@@ -36,48 +22,38 @@ const columns: ColumnsType<RankingsData> = [
     defaultSortOrder: "descend",
   },
   {
-    title: "Turniere",
-    render: (value) => `${value}/5`,
-    dataIndex: "nr_tournaments",
-    key: "nr_tournaments",
-    sorter: (a, b) => a.nr_tournaments - b.nr_tournaments,
-  },
-  {
-    title: "Team",
-    key: "team",
-    render: (value, record) =>
-      record.individual_results.find((x) => !!x.team)?.team || "",
+    title: "#Spiele",
+    dataIndex: "games",
+    render: (value, record) => `${record.all_results.length}/5`,
   },
 ];
 
-const SinglesRankingsTable = ({
+const FactionRankingsTable = ({
   dataSource,
-  loading,
 }: {
-  dataSource: RankingsData[];
-  loading: boolean;
+  dataSource: FactionIndividualRanking[];
 }) => {
-  const [results, setResults] = useState<RankingsData[]>([]);
+  const [results, setResults] = useState<FactionIndividualRanking[]>([]);
 
   useEffect(() => {
     setResults(dataSource);
   }, [dataSource]);
 
+  // @ts-ignore
   return (
     <>
-      <div style={{ width: 500, marginBottom: 20 }}>
+      <div style={{ width: 500, marginBottom: 20, marginTop: 20 }}>
         <NameSearch
           fullDataSet={dataSource}
           setResults={setResults}
           searchKey={"display_name"}
-          placeholder={"Spieler*in Name suchen"}
+          placeholder={"Spieler*in suchen"}
         />
       </div>
-      <Table<RankingsData>
+      <Table<FactionIndividualRanking>
         dataSource={results}
         scroll={{ x: true }}
         columns={columns}
-        loading={loading}
         rowKey={"identifier"}
         pagination={{
           pageSize: 50,
@@ -87,12 +63,12 @@ const SinglesRankingsTable = ({
           expandedRowRender: (record) => (
             <div style={{ maxWidth: 650, overflow: "scroll" }}>
               <IndividualResultTable
-                dataSource={record.all_results || record.individual_results}
+                dataSource={record.all_results}
                 rowClassName={(result) =>
                   clsx(
                     result.tournament_id && "clickable",
                     !isResultCounted({
-                      individualResults: record.individual_results,
+                      individualResults: record.results,
                       result: result,
                     }) && "result-not-counted"
                   )
@@ -107,4 +83,4 @@ const SinglesRankingsTable = ({
   );
 };
 
-export default SinglesRankingsTable;
+export default FactionRankingsTable;

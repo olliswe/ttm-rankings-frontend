@@ -36,7 +36,7 @@ const columns: ColumnsType<TeamRanking> = [
   },
 ];
 
-const SinglesRankingsTable = ({
+const TeamRankingsTable = ({
   dataSource,
   loading,
 }: {
@@ -91,4 +91,4 @@ const SinglesRankingsTable = ({
   );
 };
 
-export default SinglesRankingsTable;
+export default TeamRankingsTable;

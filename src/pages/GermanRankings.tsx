@@ -5,6 +5,7 @@ import { Menu } from "antd";
 import GermanTeamRankings from "./GermanTeamRankings";
 import SinglesRanking from "../SinglesRanking";
 import { Country } from "../constants";
+import GermanFactionRankings from "./GermanFactionRankings";
 
 const items = [
   {
@@ -21,7 +22,6 @@ const items = [
     label: "Faction Rangliste",
     key: "faction",
     icon: <ReadOutlined />,
-    disabled: true,
   },
 ];
 
@@ -49,6 +49,7 @@ const GermanRankings: React.FC = () => {
           />
         )}
         {current === "teams" && <GermanTeamRankings />}
+        {current === "faction" && <GermanFactionRankings />}
       </div>
     </div>
   );
