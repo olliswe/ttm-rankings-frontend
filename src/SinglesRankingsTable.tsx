@@ -37,7 +37,7 @@ const columns: ColumnsType<ModRankingsData> = [
     dataIndex: "display_name",
     key: "display_name",
     sorter: (a, b) => (a.display_name < b.display_name ? -1 : 1),
-    render: (value, record) => `${value}${record.hasGoldenTicket ? " 🎟️" : ""}`,
+    render: (value, record) => `${value}${record.hasGoldenTicket ? " 🎫" : ""}`,
   },
   {
     title: "Punkte",
