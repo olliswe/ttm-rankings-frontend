@@ -1,8 +1,9 @@
-import React, { useCallback } from "react";
-import { Country } from "./constants";
+import React, {useCallback} from "react";
+import {Country} from "./constants";
 import useRankingsData from "./useRankingsData";
 import SinglesRankingsTable from "./SinglesRankingsTable";
 import YearTabs from "./components/YearTabs";
+import useGoldenTicketData from "./useGoldenTicketData";
 
 const SinglesRanking = ({
   years,
@@ -13,16 +14,20 @@ const SinglesRanking = ({
 }) => {
   const { fetchRankingsData, data, loading } = useRankingsData();
 
+  const { fetchGoldenTicketData, data: goldenTicketData} =
+    useGoldenTicketData();
+
   const fetchData = useCallback(
     (year: string) => {
+      fetchGoldenTicketData({ year });
       fetchRankingsData({ year, country });
     },
-    [fetchRankingsData, country]
+    [fetchRankingsData, country, fetchGoldenTicketData]
   );
 
   return (
     <YearTabs years={years} fetchData={fetchData}>
-      <SinglesRankingsTable dataSource={data} loading={loading} />
+      <SinglesRankingsTable dataSource={data} loading={loading} goldenTicketData={goldenTicketData}/>
     </YearTabs>
   );
 };

@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { ColumnsType } from "antd/es/table";
-import { Table } from "antd";
-import { IndividualResult, RankingsData } from "./useRankingsData";
+import React, {useEffect, useState} from "react";
+import {ColumnsType} from "antd/es/table";
+import {Table} from "antd";
+import {IndividualResult, RankingsData} from "./useRankingsData";
 import NameSearch from "./NameSearch";
 import "./table.css";
 import clsx from "clsx";
 import IndividualResultTable from "./components/IndividualResultTable";
+import {GoldenTicketData} from "./useGoldenTicketData";
+
+type ModRankingsData = RankingsData & { hasGoldenTicket: boolean };
 
 export const isResultCounted = ({
   individualResults,
@@ -20,13 +23,21 @@ export const isResultCounted = ({
   return individualResults.find((x) => x.result_id === result.result_id);
 };
 
-const columns: ColumnsType<RankingsData> = [
+const hasGoldenTicket = (
+  identifier: string,
+  goldenTicketData: GoldenTicketData[]
+) => {
+  return goldenTicketData.some((x) => x.identifier === identifier);
+};
+
+const columns: ColumnsType<ModRankingsData> = [
   { title: "Ranking", dataIndex: "ttm_ranking", key: "ttm_ranking" },
   {
     title: "Name",
     dataIndex: "display_name",
     key: "display_name",
     sorter: (a, b) => (a.display_name < b.display_name ? -1 : 1),
+    render: (value, record) => `${value}${record.hasGoldenTicket ? " 🎟️" : ""}`,
   },
   {
     title: "Punkte",
@@ -53,15 +64,22 @@ const columns: ColumnsType<RankingsData> = [
 const SinglesRankingsTable = ({
   dataSource,
   loading,
+  goldenTicketData,
 }: {
   dataSource: RankingsData[];
   loading: boolean;
+  goldenTicketData: GoldenTicketData[];
 }) => {
-  const [results, setResults] = useState<RankingsData[]>([]);
+  const [results, setResults] = useState<ModRankingsData[]>([]);
 
   useEffect(() => {
-    setResults(dataSource);
-  }, [dataSource]);
+    setResults(
+      dataSource.map((x) => ({
+        ...x,
+        hasGoldenTicket: hasGoldenTicket(x.identifier, goldenTicketData),
+      }))
+    );
+  }, [dataSource, goldenTicketData]);
 
   return (
     <>
@@ -73,7 +91,7 @@ const SinglesRankingsTable = ({
           placeholder={"Spieler*in Name suchen"}
         />
       </div>
-      <Table<RankingsData>
+      <Table<ModRankingsData>
         dataSource={results}
         scroll={{ x: true }}
         columns={columns}
