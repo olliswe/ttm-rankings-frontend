@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from "react";
-import {ColumnsType} from "antd/es/table";
-import {Table} from "antd";
-import {IndividualResult, RankingsData} from "./useRankingsData";
+import React, { useCallback, useEffect, useState } from "react";
+import { ColumnsType } from "antd/es/table";
+import { Table } from "antd";
+import { IndividualResult, RankingsData } from "./useRankingsData";
 import NameSearch from "./NameSearch";
 import "./table.css";
 import clsx from "clsx";
 import IndividualResultTable from "./components/IndividualResultTable";
-import {GoldenTicketData} from "./useGoldenTicketData";
+import { GoldenTicketData } from "./useGoldenTicketData";
 
 type ModRankingsData = RankingsData & { hasGoldenTicket: boolean };
 
@@ -72,21 +72,28 @@ const SinglesRankingsTable = ({
 }) => {
   const [results, setResults] = useState<ModRankingsData[]>([]);
 
+  const onChange = useCallback(
+    (data: RankingsData[]) => {
+      setResults(
+        data.map((x) => ({
+          ...x,
+          hasGoldenTicket: hasGoldenTicket(x.identifier, goldenTicketData),
+        }))
+      );
+    },
+    [goldenTicketData]
+  );
+
   useEffect(() => {
-    setResults(
-      dataSource.map((x) => ({
-        ...x,
-        hasGoldenTicket: hasGoldenTicket(x.identifier, goldenTicketData),
-      }))
-    );
-  }, [dataSource, goldenTicketData]);
+    onChange(dataSource);
+  }, [dataSource, onChange]);
 
   return (
     <>
       <div style={{ width: 500, marginBottom: 20 }}>
         <NameSearch
           fullDataSet={dataSource}
-          setResults={setResults}
+          setResults={onChange}
           searchKey={"display_name"}
           placeholder={"Spieler*in Name suchen"}
         />
