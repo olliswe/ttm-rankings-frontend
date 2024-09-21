@@ -36,8 +36,19 @@ const columns: ColumnsType<ModRankingsData> = [
     title: "Name",
     dataIndex: "display_name",
     key: "display_name",
+    width: "200px",
     sorter: (a, b) => (a.display_name < b.display_name ? -1 : 1),
-    render: (value, record) => `${value}${record.hasGoldenTicket ? " 🎫" : ""}`,
+    render: (value, record) => (
+      <span>
+        {value}
+        {record.hasGoldenTicket && (
+          <img
+            src="https://breakingheads.de/wp-content/uploads/2024/09/GoldenTicket.png"
+            style={{ marginLeft: 8, height: 10 }}
+          />
+        )}
+      </span>
+    ),
   },
   {
     title: "Punkte",
