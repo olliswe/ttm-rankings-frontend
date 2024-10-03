@@ -66,11 +66,6 @@ const columns: ColumnsType<ModRankingsData> = [
     sorter: (a, b) => a.nr_tournaments - b.nr_tournaments,
   },
   {
-    title: "Team",
-    key: "team",
-    render: (value, record) => record.team,
-  },
-  {
     title: "",
     key: "teamIcon",
     width: 50,
@@ -90,6 +85,11 @@ const columns: ColumnsType<ModRankingsData> = [
         )}
       </div>
     ),
+  },
+  {
+    title: "Team",
+    key: "team",
+    render: (value, record) => record.team,
   },
 ];
 

@@ -10,10 +10,6 @@ import { TeamIconData } from "./useTeamIconsData";
 const columns: ColumnsType<TeamRanking> = [
   { title: "Ranking", dataIndex: "ranking" },
   {
-    title: "Team",
-    dataIndex: "team",
-  },
-  {
     title: "",
     key: "teamIcon",
     width: 50,
@@ -33,6 +29,10 @@ const columns: ColumnsType<TeamRanking> = [
         )}
       </div>
     ),
+  },
+  {
+    title: "Team",
+    dataIndex: "team",
   },
   {
     title: "Punkte",
