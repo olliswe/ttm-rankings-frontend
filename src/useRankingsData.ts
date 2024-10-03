@@ -27,10 +27,11 @@ export interface RankingsData {
   individual_results: IndividualResult[];
   all_results?: IndividualResult[];
   ttm_ranking: number;
+  team?: string;
+  teamIcon?: string;
 }
 
-
-const   useRankingsData = () => {
+const useRankingsData = () => {
   const [data, setData] = useState<RankingsData[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);

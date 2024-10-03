@@ -7,6 +7,7 @@ import "./table.css";
 import clsx from "clsx";
 import IndividualResultTable from "./components/IndividualResultTable";
 import { GoldenTicketData } from "./useGoldenTicketData";
+import { TeamIconData } from "./useTeamIconsData";
 
 type ModRankingsData = RankingsData & { hasGoldenTicket: boolean };
 
@@ -67,8 +68,28 @@ const columns: ColumnsType<ModRankingsData> = [
   {
     title: "Team",
     key: "team",
-    render: (value, record) =>
-      record.individual_results.find((x) => !!x.team)?.team || "",
+    render: (value, record) => record.team,
+  },
+  {
+    title: "",
+    key: "teamIcon",
+    width: 50,
+    render: (value, record) => (
+      <div
+        style={{
+          width: 50,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {record.teamIcon ? (
+          <img src={record.teamIcon} style={{ maxWidth: 50, maxHeight: 30 }} />
+        ) : (
+          ""
+        )}
+      </div>
+    ),
   },
 ];
 
@@ -76,23 +97,31 @@ const SinglesRankingsTable = ({
   dataSource,
   loading,
   goldenTicketData,
+  teamIconsData,
 }: {
   dataSource: RankingsData[];
   loading: boolean;
   goldenTicketData: GoldenTicketData[];
+  teamIconsData: TeamIconData[];
 }) => {
   const [results, setResults] = useState<ModRankingsData[]>([]);
 
   const onChange = useCallback(
     (data: RankingsData[]) => {
       setResults(
-        data.map((x) => ({
-          ...x,
-          hasGoldenTicket: hasGoldenTicket(x.identifier, goldenTicketData),
-        }))
+        data.map((x) => {
+          const team =
+            x.individual_results.find((result) => !!result.team)?.team || "";
+          return {
+            ...x,
+            hasGoldenTicket: hasGoldenTicket(x.identifier, goldenTicketData),
+            team,
+            teamIcon: teamIconsData.find((icon) => icon.Team === team)?.url,
+          };
+        })
       );
     },
-    [goldenTicketData]
+    [goldenTicketData, teamIconsData]
   );
 
   useEffect(() => {

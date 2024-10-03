@@ -11,6 +11,7 @@ export interface TeamRanking {
   all_results: IndividualResult[];
   team: string;
   best_results: IndividualResult[];
+  teamIcon?: string;
 }
 
 const useTeamsRankingsData = () => {

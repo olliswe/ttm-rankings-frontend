@@ -1,16 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { ColumnsType } from "antd/es/table";
 import { Table } from "antd";
 import NameSearch from "./NameSearch";
 import "./table.css";
 import IndividualResultTable from "./components/IndividualResultTable";
 import { TeamRanking } from "./useTeamsRankingsData";
+import { TeamIconData } from "./useTeamIconsData";
 
 const columns: ColumnsType<TeamRanking> = [
   { title: "Ranking", dataIndex: "ranking" },
   {
     title: "Team",
     dataIndex: "team",
+  },
+  {
+    title: "",
+    key: "teamIcon",
+    width: 50,
+    render: (value, record) => (
+      <div
+        style={{
+          width: 50,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {record.teamIcon ? (
+          <img src={record.teamIcon} style={{ maxWidth: 50, maxHeight: 30 }} />
+        ) : (
+          ""
+        )}
+      </div>
+    ),
   },
   {
     title: "Punkte",
@@ -39,15 +61,29 @@ const columns: ColumnsType<TeamRanking> = [
 const TeamRankingsTable = ({
   dataSource,
   loading,
+  teamIconsData,
 }: {
   dataSource: TeamRanking[];
+  teamIconsData: TeamIconData[];
   loading: boolean;
 }) => {
   const [results, setResults] = useState<TeamRanking[]>([]);
 
+  const onChange = useCallback(
+    (data: TeamRanking[]) => {
+      setResults(
+        data.map((x) => ({
+          ...x,
+          teamIcon: teamIconsData.find((icon) => icon.Team === x.team)?.url,
+        }))
+      );
+    },
+    [teamIconsData]
+  );
+
   useEffect(() => {
-    setResults(dataSource);
-  }, [dataSource]);
+    onChange(dataSource);
+  }, [dataSource, onChange]);
 
   // @ts-ignore
   return (
@@ -55,7 +91,7 @@ const TeamRankingsTable = ({
       <div style={{ width: 500, marginBottom: 20 }}>
         <NameSearch
           fullDataSet={dataSource}
-          setResults={setResults}
+          setResults={onChange}
           searchKey={"team"}
           placeholder={"Team Name suchen"}
         />
