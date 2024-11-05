@@ -116,7 +116,9 @@ const SinglesRankingsTable = ({
             ...x,
             hasGoldenTicket: hasGoldenTicket(x.identifier, goldenTicketData),
             team,
-            teamIcon: teamIconsData.find((icon) => icon.Team === team)?.url,
+            teamIcon: teamIconsData.find(
+              (icon) => icon.Team?.toLowerCase() === team?.toLowerCase()
+            )?.url,
           };
         })
       );
