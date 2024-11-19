@@ -1,6 +1,5 @@
 {
   "name": "germany-ranking-fe",
-  "homepage": "https://olliswe.github.io/ttm-rankings-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
