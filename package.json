@@ -1,5 +1,6 @@
 {
   "name": "germany-ranking-fe",
+  "homepage": "https://ttm-rankings-frontend.vercel.app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
