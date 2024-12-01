@@ -60,10 +60,11 @@ const columns: ColumnsType<ModRankingsData> = [
   },
   {
     title: "Turniere",
-    render: (value) => `${value}/5`,
-    dataIndex: "nr_tournaments",
-    key: "nr_tournaments",
-    sorter: (a, b) => a.nr_tournaments - b.nr_tournaments,
+    render: (_, record) =>
+      `${
+        record.all_results?.length ?? record.individual_results?.length ?? 0
+      }/5`,
+    key: "total_nr_tournaments",
   },
   {
     title: "",
