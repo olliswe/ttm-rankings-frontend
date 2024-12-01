@@ -19,7 +19,7 @@ const YearTabs = ({
   }, [activeKey, fetchData]);
 
   return (
-    <div style={{ maxWidth: 720, maxHeight: 3000, overflow: "scroll" }}>
+    <div style={{ maxWidth: 720, maxHeight: 2200, overflow: "scroll" }}>
       <Tabs activeKey={activeKey} onChange={setActiveKey}>
         {years.map((year) => (
           <TabPane tab={year} key={year}>
