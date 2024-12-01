@@ -111,14 +111,18 @@ const SinglesRankingsTable = ({
       setResults(
         data.map((x) => {
           const team =
-            x.individual_results.find((result) => !!result.team)?.team || "";
+            x.individual_results.find((result) => !!result.best_team)
+              ?.best_team || "";
           return {
             ...x,
             hasGoldenTicket: hasGoldenTicket(x.identifier, goldenTicketData),
             team,
-            teamIcon: teamIconsData.find(
-              (icon) => icon.Team?.toLowerCase() === team?.toLowerCase()
-            )?.url,
+            teamIcon:
+              team &&
+              teamIconsData.find(
+                (icon) =>
+                  icon.Team?.toLowerCase() === String(team)?.toLowerCase()
+              )?.url,
           };
         })
       );

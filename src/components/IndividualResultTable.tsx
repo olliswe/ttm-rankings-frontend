@@ -64,8 +64,8 @@ const individualResultsColumns: ColumnsType<IndividualResult> = [
   },
   {
     title: "Team",
-    dataIndex: "team",
-    key: "team",
+    dataIndex: "best_team",
+    key: "best_team",
     render: (value) => <div style={{ width: 150 }}>{value}</div>,
   },
 ];

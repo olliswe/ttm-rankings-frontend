@@ -9,7 +9,7 @@ export interface IndividualResult {
   placement: number;
   battle_size: number;
   city: string;
-  team: string;
+  best_team: string;
   tournament_name: string;
   tournament_type: string;
   ttm_points: number;
