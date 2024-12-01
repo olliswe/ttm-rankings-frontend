@@ -151,7 +151,7 @@ const SinglesRankingsTable = ({
         loading={loading}
         rowKey={"identifier"}
         pagination={{
-          pageSize: 50,
+          pageSize: 25,
           showSizeChanger: false,
         }}
         expandable={{

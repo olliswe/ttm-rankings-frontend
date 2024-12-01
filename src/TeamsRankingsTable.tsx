@@ -74,7 +74,9 @@ const TeamRankingsTable = ({
       setResults(
         data.map((x) => ({
           ...x,
-          teamIcon: teamIconsData.find((icon) => icon.Team?.toLowerCase() === x.team?.toLowerCase())?.url,
+          teamIcon: teamIconsData.find(
+            (icon) => icon.Team?.toLowerCase() === x.team?.toLowerCase()
+          )?.url,
         }))
       );
     },
@@ -103,7 +105,7 @@ const TeamRankingsTable = ({
         loading={loading}
         rowKey={"team"}
         pagination={{
-          pageSize: 50,
+          pageSize: 25,
           showSizeChanger: false,
         }}
         expandable={{
