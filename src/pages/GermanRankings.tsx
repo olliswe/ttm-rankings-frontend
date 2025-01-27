@@ -44,7 +44,7 @@ const GermanRankings: React.FC = () => {
       <div style={{ paddingTop: 8, paddingLeft: 16 }}>
         {current === "individual" && (
           <SinglesRanking
-            years={["2024", "2023", "2022", "2021"]}
+            years={["2025", "2024", "2023", "2022", "2021"]}
             country={Country.Germany}
           />
         )}
