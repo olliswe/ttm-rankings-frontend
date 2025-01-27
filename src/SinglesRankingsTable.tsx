@@ -121,7 +121,7 @@ const SinglesRankingsTable = ({
               team &&
               teamIconsData.find(
                 (icon) =>
-                  icon.Team?.toLowerCase() === String(team)?.toLowerCase()
+                  icon?.Team?.toLowerCase() === String(team)?.toLowerCase()
               )?.url,
           };
         })

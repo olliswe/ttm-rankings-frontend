@@ -75,7 +75,8 @@ const TeamRankingsTable = ({
         data.map((x) => ({
           ...x,
           teamIcon: teamIconsData.find(
-            (icon) => icon.Team?.toLowerCase() === x.team?.toLowerCase()
+            (icon) =>
+              icon?.Team?.toLowerCase() === String(x?.team)?.toLowerCase()
           )?.url,
         }))
       );
