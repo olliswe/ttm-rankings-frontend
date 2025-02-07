@@ -6,6 +6,7 @@ export interface IndividualResult {
   players: number;
   date: string;
   faction: string;
+  detachment: string;
   placement: number;
   battle_size: number;
   city: string;
@@ -14,6 +15,7 @@ export interface IndividualResult {
   tournament_type: string;
   ttm_points: number;
   tournament_id: string;
+  tournament_site: string;
   wins: number;
   result_id?: string;
 }

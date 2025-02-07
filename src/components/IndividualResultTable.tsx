@@ -63,12 +63,42 @@ const individualResultsColumns: ColumnsType<IndividualResult> = [
     dataIndex: "faction",
   },
   {
+    title: "Detachment",
+    key: "detachment",
+    dataIndex: "detachment",
+  },
+  {
     title: "Team",
     dataIndex: "best_team",
     key: "best_team",
     render: (value) => <div style={{ width: 150 }}>{value}</div>,
   },
 ];
+
+const onRowClick = (record: IndividualResult) => {
+  if (!record.tournament_id) {
+    return;
+  }
+  if (record.tournament_site === "bcp") {
+    return window.open(
+      `https://www.bestcoastpairings.com/event/${record.tournament_id}`,
+      "_blank"
+    );
+  }
+  if (record.tournament_site === "herald") {
+    return window.open(
+      `https://www.tabletop-herald.com/warhammer-40000/de/tournaments/${record.tournament_id}`,
+      "_blank"
+    );
+  }
+  if (record.tournament_site === "t3") {
+    return window.open(
+      `https://www.tabletopturniere.de/t3_tournament.php?tid=${record.tournament_id}`,
+      "_blank"
+    );
+  }
+  return;
+};
 
 const IndividualResultTable = (props: TableProps<IndividualResult>) => {
   return (
@@ -81,15 +111,7 @@ const IndividualResultTable = (props: TableProps<IndividualResult>) => {
       rowKey={"tournament_name"}
       pagination={false}
       onRow={(record) => ({
-        ...(record.tournament_id
-          ? {
-              onClick: () =>
-                window.open(
-                  `https://www.bestcoastpairings.com/event/${record.tournament_id}`,
-                  "_blank"
-                ),
-            }
-          : {}),
+        onClick: () => onRowClick(record),
       })}
     />
   );
