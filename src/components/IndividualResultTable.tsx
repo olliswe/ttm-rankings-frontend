@@ -87,13 +87,13 @@ const onRowClick = (record: IndividualResult) => {
   }
   if (record.tournament_site === "herald") {
     return window.open(
-      `https://www.tabletop-herald.com/warhammer-40000/de/tournaments/${record.tournament_id}`,
+      `https://www.tabletop-herald.com/warhammer-40000/de/tournaments/${record.tournament_id}/rankings`,
       "_blank"
     );
   }
   if (record.tournament_site === "t3") {
     return window.open(
-      `https://www.tabletopturniere.de/t3_tournament.php?tid=${record.tournament_id}`,
+      `https://www.tabletopturniere.de/t3_tournament_results.php?tid=${record.tournament_id}`,
       "_blank"
     );
   }
