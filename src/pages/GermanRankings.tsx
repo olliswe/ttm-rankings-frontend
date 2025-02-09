@@ -14,7 +14,7 @@ const items = [
     icon: <UserOutlined />,
   },
   {
-    label: "Team Rangliste",
+    label: "Club Rangliste",
     key: "teams",
     icon: <TeamOutlined />,
   },
