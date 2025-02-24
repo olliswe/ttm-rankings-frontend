@@ -3,12 +3,12 @@ import { Table, TableProps } from "antd";
 import { IndividualResult } from "../useRankingsData";
 import { ColumnsType } from "antd/es/table";
 
-const convertDateFormat = (dateString: string): string => {
+export const convertDateFormat = (dateString: string): string => {
   const parts: string[] = dateString.split("-");
   return `${parts[2]}.${parts[1]}.${parts[0]}`;
 };
 
-const getNumberOfWins = (individualResult: IndividualResult) => {
+export const getNumberOfWins = (individualResult: { wins: number }) => {
   const stringWins = String(individualResult.wins);
   if (stringWins === "") {
     return "?";
@@ -75,7 +75,10 @@ const individualResultsColumns: ColumnsType<IndividualResult> = [
   },
 ];
 
-const onRowClick = (record: IndividualResult) => {
+export const onRowClick = (record: {
+  tournament_id: string;
+  tournament_site: string;
+}) => {
   if (!record.tournament_id) {
     return;
   }
