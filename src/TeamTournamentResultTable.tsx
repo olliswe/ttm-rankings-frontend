@@ -39,7 +39,12 @@ const individualResultsColumns: ColumnsType<TeamTournamentResult> = [
     key: "tournament_name",
     dataIndex: "tournament_name",
   },
-  { title: "Typ", dataIndex: "tournament_type", key: "tournament_type" },
+  {
+    title: "Typ",
+    dataIndex: "players_per_team",
+    key: "players_per_team",
+    render: (value) => `${value}er`,
+  },
   {
     title: "Platz.",
     key: "placement",
