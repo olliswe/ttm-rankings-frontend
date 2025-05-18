@@ -4,7 +4,6 @@ import { Table } from "antd";
 import NameSearch from "./NameSearch";
 import "./table.css";
 import { TeamTournamentRankingsData } from "./useTeamTournamentRankingsData";
-import IndividualResultTable from "./components/IndividualResultTable";
 import TeamTournamentResultTable from "./TeamTournamentResultTable";
 
 const columns: ColumnsType<TeamTournamentRankingsData> = [
@@ -24,6 +23,7 @@ const columns: ColumnsType<TeamTournamentRankingsData> = [
     title: "#Turniere",
     dataIndex: "nr_tournaments",
     sorter: (a, b) => a.nr_tournaments - b.nr_tournaments,
+    render: (value) => `${value}/3`,
   },
 ];
 
@@ -68,7 +68,10 @@ const TeamTournamentRankingsTable = ({
         expandable={{
           expandedRowRender: (record) => (
             <div style={{ maxWidth: 650, overflow: "scroll" }}>
-              <TeamTournamentResultTable dataSource={record.all_results} />
+              <TeamTournamentResultTable
+                dataSource={record.all_results}
+                individualResults={record.individual_results}
+              />
             </div>
           ),
           rowExpandable: () => true,

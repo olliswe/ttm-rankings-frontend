@@ -7,6 +7,8 @@ import {
   getNumberOfWins,
   onRowClick,
 } from "./components/IndividualResultTable";
+import clsx from "clsx";
+import "./table.css";
 
 const individualResultsColumns: ColumnsType<TeamTournamentResult> = [
   {
@@ -55,7 +57,25 @@ const individualResultsColumns: ColumnsType<TeamTournamentResult> = [
   },
 ];
 
-const TeamTournamentResultTable = (props: TableProps<TeamTournamentResult>) => {
+const isResultCounted = ({
+  individualResults,
+  result,
+}: {
+  individualResults: TeamTournamentResult[];
+  result: TeamTournamentResult;
+}) => {
+  return individualResults.find(
+    (x) =>
+      `${x.tournament_ID}-${x.team_display_name}` ===
+      `${result.tournament_ID}-${result.team_display_name}`
+  );
+};
+
+const TeamTournamentResultTable = (
+  props: TableProps<TeamTournamentResult> & {
+    individualResults: TeamTournamentResult[];
+  }
+) => {
   return (
     <Table<TeamTournamentResult>
       {...props}
@@ -63,7 +83,7 @@ const TeamTournamentResultTable = (props: TableProps<TeamTournamentResult>) => {
         ...(props.columns ? props.columns : []),
         ...individualResultsColumns,
       ]}
-      rowKey={"tournament_name"}
+      rowKey={(record) => `${record.tournament_ID}-${record.team_display_name}`}
       pagination={false}
       onRow={(record) => ({
         onClick: () =>
@@ -72,6 +92,15 @@ const TeamTournamentResultTable = (props: TableProps<TeamTournamentResult>) => {
             tournament_site: record.tournament_site,
           }),
       })}
+      rowClassName={(result) =>
+        clsx(
+          result.tournament_ID && "clickable",
+          !isResultCounted({
+            individualResults: props.individualResults,
+            result: result,
+          }) && "result-not-counted"
+        )
+      }
     />
   );
 };
