@@ -71,8 +71,8 @@ const isResultCounted = ({
 }) => {
   return individualResults.find(
     (x) =>
-      `${x.tournament_ID}-${x.team_display_name}` ===
-      `${result.tournament_ID}-${result.team_display_name}`
+      `${x.tournament_ID}-${x.team_display_name}-${x.points}` ===
+      `${result.tournament_ID}-${result.team_display_name}-${result.points}`
   );
 };
 
@@ -88,7 +88,7 @@ const TeamTournamentResultTable = (
         ...(props.columns ? props.columns : []),
         ...individualResultsColumns,
       ]}
-      rowKey={(record) => `${record.tournament_ID}-${record.team_display_name}`}
+      rowKey={(record) => `${record.tournament_ID}-${record.team_display_name}-${record.points}`}
       pagination={false}
       onRow={(record) => ({
         onClick: () =>
