@@ -1,6 +1,6 @@
 import React from "react";
 import { Table, TableProps } from "antd";
-import { IndividualResult } from "../useRankingsData";
+import { IndividualResult } from "../hooks/useRankingsData";
 import { ColumnsType } from "antd/es/table";
 
 export const convertDateFormat = (dateString: string): string => {

@@ -8,10 +8,10 @@ import {
 import type { MenuProps } from "antd";
 import { Menu } from "antd";
 import GermanTeamRankings from "./GermanTeamRankings";
-import SinglesRanking from "../SinglesRanking";
-import { Country } from "../constants";
+import SinglesRanking from "../components/SinglesRanking";
+import { Country } from "../utils/constants";
 import GermanFactionRankings from "./GermanFactionRankings";
-import TeamTournamentRankings from "../TeamTournamentRankings";
+import TeamTournamentRankings from "../components/TeamTournamentRankings";
 
 const items = [
   {

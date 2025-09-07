@@ -1,9 +1,9 @@
 import React, { useCallback } from "react";
-import useTeamsRankingsData from "./useTeamsRankingsData";
-import { Country } from "./constants";
-import YearTabs from "./components/YearTabs";
+import useTeamsRankingsData from "../hooks/useTeamsRankingsData";
+import { Country } from "../utils/constants";
+import YearTabs from "./YearTabs";
 import TeamsRankingsTable from "./TeamsRankingsTable";
-import useTeamIconsData from "./useTeamIconsData";
+import useTeamIconsData from "../hooks/useTeamIconsData";
 
 const TeamsRanking = ({
   years,

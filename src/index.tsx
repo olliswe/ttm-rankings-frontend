@@ -1,10 +1,22 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
+import { createRoot } from "react-dom/client";
+import RankingsRoot from "./pages/RankingsRoot";
+import { BrowserRouter, Routes, Route } from "react-router";
+import PlayerDetailsPage from "./pages/PlayerDetailsPage";
 
-ReactDOM.render(
+const container = document.getElementById("root")!;
+const root = createRoot(container);
+
+root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<RankingsRoot />} />
+        <Route
+          path="/player-details/:playerIdentifier"
+          element={<PlayerDetailsPage />}
+        />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>,
-  document.getElementById("root")
 );

@@ -3,23 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@ant-design/icons": "^4.7.0",
-    "@testing-library/jest-dom": "^5.16.1",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.4.0",
-    "@types/node": "^16.11.21",
-    "@types/react": "^17.0.38",
-    "@types/react-dom": "^17.0.11",
+    "@ant-design/icons": "^5.0.0",
+    "@testing-library/jest-dom": "^6.1.0",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.5.0",
+    "@types/jest": "^29.5.0",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
     "antd": "^5.14.1",
     "clsx": "^2.1.0",
-    "fuse.js": "^6.5.3",
-    "gh-pages": "^3.2.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "5.0.0",
-    "typescript": "^4.5.5",
-    "web-vitals": "^2.1.4"
+    "fuse.js": "^7.0.0",
+    "gh-pages": "^6.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^7.8.2",
+    "react-scripts": "5.0.1",
+    "typescript": "^5.0.0",
+    "web-vitals": "^3.5.0"
   },
   "scripts": {
     "start": "REACT_APP_API_URL=http://127.0.0.1:8000 react-scripts start",
@@ -49,6 +50,6 @@
     ]
   },
   "devDependencies": {
-    "prettier": "^2.5.1"
+    "prettier": "^3.0.0"
   }
 }

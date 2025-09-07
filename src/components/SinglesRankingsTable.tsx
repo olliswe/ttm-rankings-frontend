@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { ColumnsType } from "antd/es/table";
 import { Table } from "antd";
-import { IndividualResult, RankingsData } from "./useRankingsData";
+import { IndividualResult, RankingsData } from "../hooks/useRankingsData";
 import NameSearch from "./NameSearch";
-import "./table.css";
+import "../styles/table.css";
 import clsx from "clsx";
-import IndividualResultTable from "./components/IndividualResultTable";
-import { GoldenTicketData } from "./useGoldenTicketData";
-import { TeamIconData } from "./useTeamIconsData";
+import IndividualResultTable from "./IndividualResultTable";
+import { GoldenTicketData } from "../hooks/useGoldenTicketData";
+import { TeamIconData } from "../hooks/useTeamIconsData";
 
 type ModRankingsData = RankingsData & { hasGoldenTicket: boolean };
 

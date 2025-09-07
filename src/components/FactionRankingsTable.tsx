@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { ColumnsType } from "antd/es/table";
 import { Table } from "antd";
 import NameSearch from "./NameSearch";
-import "./table.css";
-import IndividualResultTable from "./components/IndividualResultTable";
-import { FactionIndividualRanking } from "./useFactionRankingsData";
+import "../styles/table.css";
+import IndividualResultTable from "./IndividualResultTable";
+import { FactionIndividualRanking } from "../hooks/useFactionRankingsData";
 import clsx from "clsx";
 import { isResultCounted } from "./SinglesRankingsTable";
 

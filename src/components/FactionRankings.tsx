@@ -1,9 +1,9 @@
 import React, { useCallback, useMemo } from "react";
-import { Country } from "./constants";
-import YearTabs from "./components/YearTabs";
+import { Country } from "../utils/constants";
+import YearTabs from "./YearTabs";
 import useFactionRankingsData, {
   FactionRanking,
-} from "./useFactionRankingsData";
+} from "../hooks/useFactionRankingsData";
 import { Select } from "antd";
 import FactionRankingsTable from "./FactionRankingsTable";
 

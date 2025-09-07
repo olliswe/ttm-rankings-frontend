@@ -2,10 +2,10 @@ import React, { useCallback, useEffect, useState } from "react";
 import { ColumnsType } from "antd/es/table";
 import { Table } from "antd";
 import NameSearch from "./NameSearch";
-import "./table.css";
-import IndividualResultTable from "./components/IndividualResultTable";
-import { TeamRanking } from "./useTeamsRankingsData";
-import { TeamIconData } from "./useTeamIconsData";
+import "../styles/table.css";
+import IndividualResultTable from "./IndividualResultTable";
+import { TeamRanking } from "../hooks/useTeamsRankingsData";
+import { TeamIconData } from "../hooks/useTeamIconsData";
 
 const columns: ColumnsType<TeamRanking> = [
   { title: "Ranking", dataIndex: "ranking" },
