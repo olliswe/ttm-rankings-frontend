@@ -1,6 +1,6 @@
 import React from "react";
-import TeamsRankings from "../TeamsRankings";
-import { Country } from "../constants";
+import TeamsRankings from "../components/TeamsRankings";
+import { Country } from "../utils/constants";
 
 const GermanTeamRankings = () => {
   return <TeamsRankings years={["2025", "2024"]} country={Country.Germany} />;

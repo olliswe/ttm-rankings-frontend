@@ -1,7 +1,7 @@
-import GermanRankings from "./pages/GermanRankings";
-import AustrianRankings from "./pages/AustrianRankings";
+import GermanRankings from "./GermanRankings";
+import AustrianRankings from "./AustrianRankings";
 
-const App = () => {
+const RankingsRoot = () => {
   const query = new URLSearchParams(window.location.search);
   const country = query.get("country");
 
@@ -12,4 +12,4 @@ const App = () => {
   return <GermanRankings />;
 };
 
-export default App;
+export default RankingsRoot;

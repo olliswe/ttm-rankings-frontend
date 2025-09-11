@@ -1,5 +1,5 @@
 import {useCallback, useState} from "react";
-import {API_URL} from "./constants";
+import {API_URL} from "../utils/constants";
 
 export interface TeamTournamentResult {
   team_display_name: string;

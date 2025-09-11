@@ -2,8 +2,8 @@ import React, { useCallback, useEffect, useState } from "react";
 import { ColumnsType } from "antd/es/table";
 import { Table } from "antd";
 import NameSearch from "./NameSearch";
-import "./table.css";
-import { TeamTournamentRankingsData } from "./useTeamTournamentRankingsData";
+import "../styles/table.css";
+import { TeamTournamentRankingsData } from "../hooks/useTeamTournamentRankingsData";
 import TeamTournamentResultTable from "./TeamTournamentResultTable";
 
 const columns: ColumnsType<TeamTournamentRankingsData> = [

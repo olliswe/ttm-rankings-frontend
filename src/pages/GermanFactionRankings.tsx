@@ -1,6 +1,6 @@
 import React from "react";
-import { Country } from "../constants";
-import FactionRankings from "../FactionRankings";
+import { Country } from "../utils/constants";
+import FactionRankings from "../components/FactionRankings";
 
 const GermanFactionRankings = () => {
   return (

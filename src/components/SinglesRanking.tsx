@@ -1,10 +1,10 @@
 import React, { useCallback } from "react";
-import { Country } from "./constants";
-import useRankingsData from "./useRankingsData";
+import { Country } from "../utils/constants";
+import useRankingsData from "../hooks/useRankingsData";
 import SinglesRankingsTable from "./SinglesRankingsTable";
-import YearTabs from "./components/YearTabs";
-import useGoldenTicketData from "./useGoldenTicketData";
-import useTeamIconsData from "./useTeamIconsData";
+import YearTabs from "./YearTabs";
+import useGoldenTicketData from "../hooks/useGoldenTicketData";
+import useTeamIconsData from "../hooks/useTeamIconsData";
 
 const SinglesRanking = ({
   years,

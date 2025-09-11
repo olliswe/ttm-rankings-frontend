@@ -1,14 +1,14 @@
 import React from "react";
 import { Table, TableProps } from "antd";
 import { ColumnsType } from "antd/es/table";
-import { TeamTournamentResult } from "./useTeamTournamentRankingsData";
+import { TeamTournamentResult } from "../hooks/useTeamTournamentRankingsData";
 import {
   convertDateFormat,
   getNumberOfWins,
   onRowClick,
-} from "./components/IndividualResultTable";
+} from "./IndividualResultTable";
 import clsx from "clsx";
-import "./table.css";
+import "../styles/table.css";
 
 const individualResultsColumns: ColumnsType<TeamTournamentResult> = [
   {

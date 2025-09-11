@@ -1,7 +1,7 @@
 import React, {useCallback} from "react";
-import {Country} from "./constants";
-import YearTabs from "./components/YearTabs";
-import useTeamTournamentRankingsData from "./useTeamTournamentRankingsData";
+import {Country} from "../utils/constants";
+import YearTabs from "./YearTabs";
+import useTeamTournamentRankingsData from "../hooks/useTeamTournamentRankingsData";
 import TeamTournamentRankingsTable from "./TeamTournamentRankingsTable";
 
 const TeamTournamentRankings = ({
