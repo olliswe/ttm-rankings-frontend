@@ -34,7 +34,7 @@ const PlayerDetailsCard = ({
         >
           <Avatar
             size={80}
-            style={{ backgroundColor: "#1890ff" }}
+            style={{ backgroundColor: "#f8f8f8" }}
             className="avatar"
             {...(teamIcon ? { src: teamIcon } : { icon: <UserOutlined /> })}
           />
