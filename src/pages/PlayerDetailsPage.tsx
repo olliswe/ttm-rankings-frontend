@@ -28,7 +28,7 @@ const PlayerDetailsPage = () => {
 
   const { team, teamIcon } = useMemo(() => {
     const team =
-      data?.individual_results.find((result) => !!result.best_team)
+      data?.individual_results?.find((result) => !!result.best_team)
         ?.best_team || "";
     if (!team) {
       return { team: "", teamIcon: "" };
@@ -36,7 +36,7 @@ const PlayerDetailsPage = () => {
     return {
       team,
       teamIcon:
-        teamIconsData.find(
+        teamIconsData?.find(
           (icon) => icon?.Team?.toLowerCase() === String(team)?.toLowerCase(),
         )?.url || "",
     };
