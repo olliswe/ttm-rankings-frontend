@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { ColumnsType } from "antd/es/table";
 import { Table } from "antd";
 import { IndividualResult, RankingsData } from "../hooks/useRankingsData";
@@ -8,6 +8,9 @@ import clsx from "clsx";
 import IndividualResultTable from "./IndividualResultTable";
 import { GoldenTicketData } from "../hooks/useGoldenTicketData";
 import { TeamIconData } from "../hooks/useTeamIconsData";
+import { UserOutlined } from "@ant-design/icons";
+import { Tooltip } from "antd";
+import { ColumnType } from "antd/es/table/interface";
 
 type ModRankingsData = RankingsData & { hasGoldenTicket: boolean };
 
@@ -26,13 +29,14 @@ export const isResultCounted = ({
 
 const hasGoldenTicket = (
   identifier: string,
-  goldenTicketData: GoldenTicketData[]
+  goldenTicketData: GoldenTicketData[],
 ) => {
   return goldenTicketData.some((x) => x.identifier === identifier);
 };
 
 const columns: ColumnsType<ModRankingsData> = [
   { title: "Ranking", dataIndex: "ttm_ranking", key: "ttm_ranking" },
+
   {
     title: "Name",
     dataIndex: "display_name",
@@ -93,16 +97,34 @@ const columns: ColumnsType<ModRankingsData> = [
   },
 ];
 
+const profileColumn: ColumnType<ModRankingsData> = {
+  title: "",
+  dataIndex: "profile_url",
+  key: "profile_url",
+  render: (value: string) =>
+    value ? (
+      <Tooltip title="Profil öffnen" placement="top">
+        <a href={value} target="__blank">
+          <UserOutlined style={{ fontSize: 16, color: "#1890ff" }} />
+        </a>
+      </Tooltip>
+    ) : null,
+  width: "10px",
+  align: "center",
+};
+
 const SinglesRankingsTable = ({
   dataSource,
   loading,
   goldenTicketData,
   teamIconsData,
+  showProfile,
 }: {
   dataSource: RankingsData[];
   loading: boolean;
   goldenTicketData: GoldenTicketData[];
   teamIconsData: TeamIconData[];
+  showProfile: boolean;
 }) => {
   const [results, setResults] = useState<ModRankingsData[]>([]);
 
@@ -121,18 +143,25 @@ const SinglesRankingsTable = ({
               team &&
               teamIconsData.find(
                 (icon) =>
-                  icon?.Team?.toLowerCase() === String(team)?.toLowerCase()
+                  icon?.Team?.toLowerCase() === String(team)?.toLowerCase(),
               )?.url,
           };
-        })
+        }),
       );
     },
-    [goldenTicketData, teamIconsData]
+    [goldenTicketData, teamIconsData],
   );
 
   useEffect(() => {
     onChange(dataSource);
   }, [dataSource, onChange]);
+
+  const finalColumns = useMemo(() => {
+    if (showProfile) {
+      return [...columns, profileColumn];
+    }
+    return columns;
+  }, [showProfile]);
 
   return (
     <>
@@ -147,7 +176,7 @@ const SinglesRankingsTable = ({
       <Table<ModRankingsData>
         dataSource={results}
         scroll={{ x: true }}
-        columns={columns}
+        columns={finalColumns}
         loading={loading}
         rowKey={"identifier"}
         pagination={{
@@ -165,7 +194,7 @@ const SinglesRankingsTable = ({
                     !isResultCounted({
                       individualResults: record.individual_results,
                       result: result,
-                    }) && "result-not-counted"
+                    }) && "result-not-counted",
                   )
                 }
               />

@@ -56,7 +56,7 @@ const PlayerDetailsCard = ({
 
           <div>
             <StarOutlined style={{ color: "#52c41a", marginRight: 8 }} />
-            <Text strong>Total Points: {data.total_points.toFixed(2)}</Text>
+            <Text strong>Total Points: {data?.total_points?.toFixed(2)}</Text>
           </div>
 
           <div>

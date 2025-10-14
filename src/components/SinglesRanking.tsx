@@ -26,12 +26,13 @@ const SinglesRanking = ({
       fetchRankingsData({ year, country });
       fetchTeamIcons();
     },
-    [fetchRankingsData, country, fetchGoldenTicketData]
+    [fetchRankingsData, country, fetchGoldenTicketData],
   );
 
   return (
     <YearTabs years={years} fetchData={fetchData}>
       <SinglesRankingsTable
+        showProfile={country === Country.Germany}
         dataSource={data}
         loading={loading}
         goldenTicketData={goldenTicketData}

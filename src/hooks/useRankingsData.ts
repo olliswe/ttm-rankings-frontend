@@ -21,6 +21,7 @@ export interface IndividualResult {
 }
 
 export interface RankingsData {
+  profile_url: string;
   display_name: string;
   identifier: string;
   total_points: number;
@@ -44,7 +45,7 @@ const useRankingsData = () => {
       setError(false);
       try {
         const json = await fetch(
-          `${API_URL}/player-data?year=${year}&country=${country}`
+          `${API_URL}/player-data?year=${year}&country=${country}`,
         );
         const res = await json.json();
         const data = res.data;
@@ -55,7 +56,7 @@ const useRankingsData = () => {
         setLoading(false);
       }
     },
-    []
+    [],
   );
 
   return { error, loading, data, fetchRankingsData };

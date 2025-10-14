@@ -46,7 +46,7 @@ const PlayerDetailsPage = () => {
     if (loading) {
       return <div>Loading...</div>;
     }
-    if (data) {
+    if (data && !!data.total_points) {
       return (
         <>
           <PlayerDetailsCard data={data} team={team} teamIcon={teamIcon} />
