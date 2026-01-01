@@ -50,6 +50,7 @@ const columns: ColumnsType<ModRankingsData> = [
           <img
             src="https://breakingheads.de/wp-content/uploads/2024/09/GoldenTicket.png"
             style={{ marginLeft: 8, height: 10 }}
+            alt="Golden ticket"
           />
         )}
       </span>
@@ -61,6 +62,20 @@ const columns: ColumnsType<ModRankingsData> = [
     dataIndex: "total_points",
     sorter: (a, b) => a.total_points - b.total_points,
     defaultSortOrder: "descend",
+  },
+  {
+    title: () => (
+      <div style={{ display: "flex", alignItems: "center" }}>
+        Elo{"  "}
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/62c4a96d909c007e86c1000d/7122a393-cd81-45de-aaec-88fd9c7c32a9/resized_logo.png"
+          style={{ width: 25, height: 25 }}
+          alt="SC"
+        />
+      </div>
+    ),
+    render: (value) => (value ? value.toFixed(0) : "N/A"),
+    dataIndex: "elo_ranking",
   },
   {
     title: "Turniere",

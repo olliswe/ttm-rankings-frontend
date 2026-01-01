@@ -23,7 +23,7 @@ const YearTabs = ({
   return (
     <div
       style={{
-        maxWidth: 720,
+        maxWidth: 800,
         maxHeight: 2200,
         overflow: "scroll",
         ...customStyle,

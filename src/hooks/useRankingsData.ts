@@ -32,6 +32,7 @@ export interface RankingsData {
   ttm_ranking: number;
   team?: string;
   teamIcon?: string;
+  elo_ranking?: number;
 }
 
 const useRankingsData = () => {
