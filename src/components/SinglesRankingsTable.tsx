@@ -110,21 +110,21 @@ const columns: ColumnsType<ModRankingsData> = [
         }}
       >
         {record.teamIcon ? (
-          <Tooltip title={record.team} placement="top">
-            <ConditionalWrapper
-              condition={!!record.teamUrl}
-              wrapper={(children) => (
-                <a target="_blank" rel="noreferrer" href={record.teamUrl}>
-                  {children}
-                </a>
-              )}
-            >
+          <ConditionalWrapper
+            condition={!!record.teamUrl}
+            wrapper={(children) => (
+              <a target="_blank" rel="noreferrer" href={record.teamUrl}>
+                {children}
+              </a>
+            )}
+          >
+            <Tooltip title={record.team} placement="top">
               <img
                 src={record.teamIcon}
                 style={{ maxWidth: 50, maxHeight: 30 }}
               />
-            </ConditionalWrapper>
-          </Tooltip>
+            </Tooltip>
+          </ConditionalWrapper>
         ) : (
           record.team
         )}
