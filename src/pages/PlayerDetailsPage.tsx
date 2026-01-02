@@ -26,19 +26,20 @@ const PlayerDetailsPage = () => {
     fetchTeamIcons();
   }, []);
 
-  const { team, teamIcon } = useMemo(() => {
+  const { team, teamIcon, teamUrl } = useMemo(() => {
     const team =
       data?.individual_results?.find((result) => !!result.best_team)
         ?.best_team || "";
     if (!team) {
-      return { team: "", teamIcon: "" };
+      return { team: "", teamIcon: "", teamUrl: "" };
     }
+    const teamIconInfo = teamIconsData?.find(
+      (icon) => icon?.team?.toLowerCase() === String(team)?.toLowerCase(),
+    );
     return {
       team,
-      teamIcon:
-        teamIconsData?.find(
-          (icon) => icon?.team?.toLowerCase() === String(team)?.toLowerCase(),
-        )?.image_url || "",
+      teamIcon: teamIconInfo?.image_url ?? "",
+      teamUrl: teamIconInfo?.link_url ?? "",
     };
   }, [teamIconsData, data]);
 
@@ -49,7 +50,12 @@ const PlayerDetailsPage = () => {
     if (data && !!data.total_points) {
       return (
         <>
-          <PlayerDetailsCard data={data} team={team} teamIcon={teamIcon} />
+          <PlayerDetailsCard
+            data={data}
+            team={team}
+            teamIcon={teamIcon}
+            teamUrl={teamUrl}
+          />
           <div style={{ maxWidth: 720, maxHeight: 1500, overflow: "scroll" }}>
             <PlayerDetailsTable data={data} />
           </div>

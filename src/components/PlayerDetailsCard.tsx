@@ -8,6 +8,7 @@ import {
 } from "@ant-design/icons";
 import { PlayerDetailsData } from "../hooks/usePlayerDetails";
 import "../styles/player-details-card.css";
+import ConditionalWrapper from "./ConditionalWrapper";
 
 const { Title, Text } = Typography;
 
@@ -15,10 +16,12 @@ const PlayerDetailsCard = ({
   data,
   team,
   teamIcon,
+  teamUrl,
 }: {
   data: PlayerDetailsData;
   team: string;
   teamIcon: string;
+  teamUrl: string;
 }) => {
   return (
     <Card
@@ -61,7 +64,21 @@ const PlayerDetailsCard = ({
 
           <div>
             <TeamOutlined style={{ color: "#1a55c4", marginRight: 8 }} />
-            <Text strong>Team: {team}</Text>
+            <ConditionalWrapper
+              condition={!!teamUrl}
+              wrapper={(children) => (
+                <a
+                  href={teamUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ color: "#1a55c4", textDecoration: "underline" }}
+                >
+                  {children}
+                </a>
+              )}
+            >
+              <span style={{ fontWeight: "bold" }}>Team: {team}</span>
+            </ConditionalWrapper>
           </div>
         </Space>
 

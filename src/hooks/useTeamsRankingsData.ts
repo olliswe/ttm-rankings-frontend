@@ -12,6 +12,7 @@ export interface TeamRanking {
   team: string;
   best_results: IndividualResult[];
   teamIcon?: string;
+  teamUrl?: string;
 }
 
 const useTeamsRankingsData = () => {
@@ -25,7 +26,7 @@ const useTeamsRankingsData = () => {
       setError(false);
       try {
         const json = await fetch(
-          `${API_URL}/teams-rankings-data?year=${year}&country=${country}`
+          `${API_URL}/teams-rankings-data?year=${year}&country=${country}`,
         );
         const res = await json.json();
         const data = res.data;
@@ -36,7 +37,7 @@ const useTeamsRankingsData = () => {
         setLoading(false);
       }
     },
-    []
+    [],
   );
 
   return { error, loading, data, fetchRankingsData };

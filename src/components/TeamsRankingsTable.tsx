@@ -6,6 +6,9 @@ import "../styles/table.css";
 import IndividualResultTable from "./IndividualResultTable";
 import { TeamRanking } from "../hooks/useTeamsRankingsData";
 import { TeamIconData } from "../hooks/useTeamIconsData";
+import ConditionalWrapper from "./ConditionalWrapper";
+import conditionalWrapper from "./ConditionalWrapper";
+import { Link } from "react-router-dom";
 
 const columns: ColumnsType<TeamRanking> = [
   { title: "Ranking", dataIndex: "ranking" },
@@ -23,7 +26,19 @@ const columns: ColumnsType<TeamRanking> = [
         }}
       >
         {record.teamIcon ? (
-          <img src={record.teamIcon} style={{ maxWidth: 50, maxHeight: 30 }} />
+          <ConditionalWrapper
+            condition={!!record.teamUrl}
+            wrapper={(children) => (
+              <a target="_blank" rel="noreferrer" href={record.teamUrl}>
+                {children}
+              </a>
+            )}
+          >
+            <img
+              src={record.teamIcon}
+              style={{ maxWidth: 50, maxHeight: 30 }}
+            />
+          </ConditionalWrapper>
         ) : (
           ""
         )}
@@ -72,13 +87,17 @@ const TeamRankingsTable = ({
   const onChange = useCallback(
     (data: TeamRanking[]) => {
       setResults(
-        data.map((x) => ({
-          ...x,
-          teamIcon: teamIconsData.find(
+        data.map((x) => {
+          const teamIconData = teamIconsData.find(
             (icon) =>
               icon?.team?.toLowerCase() === String(x?.team)?.toLowerCase(),
-          )?.image_url,
-        })),
+          );
+          return {
+            ...x,
+            teamIcon: teamIconData?.image_url,
+            teamUrl: teamIconData?.link_url,
+          };
+        }),
       );
     },
     [teamIconsData],
