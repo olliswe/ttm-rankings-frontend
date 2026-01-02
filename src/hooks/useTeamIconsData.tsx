@@ -2,8 +2,9 @@ import { useCallback, useState } from "react";
 import { API_URL } from "../utils/constants";
 
 export interface TeamIconData {
-  Team: string;
-  url: string;
+  team: string;
+  image_url: string;
+  web_link: string;
 }
 
 const useTeamIconsData = () => {

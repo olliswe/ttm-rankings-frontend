@@ -76,12 +76,12 @@ const TeamRankingsTable = ({
           ...x,
           teamIcon: teamIconsData.find(
             (icon) =>
-              icon?.Team?.toLowerCase() === String(x?.team)?.toLowerCase()
-          )?.url,
-        }))
+              icon?.team?.toLowerCase() === String(x?.team)?.toLowerCase(),
+          )?.image_url,
+        })),
       );
     },
-    [teamIconsData]
+    [teamIconsData],
   );
 
   useEffect(() => {

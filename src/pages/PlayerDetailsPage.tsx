@@ -37,8 +37,8 @@ const PlayerDetailsPage = () => {
       team,
       teamIcon:
         teamIconsData?.find(
-          (icon) => icon?.Team?.toLowerCase() === String(team)?.toLowerCase(),
-        )?.url || "",
+          (icon) => icon?.team?.toLowerCase() === String(team)?.toLowerCase(),
+        )?.image_url || "",
     };
   }, [teamIconsData, data]);
 

@@ -11,8 +11,12 @@ import { TeamIconData } from "../hooks/useTeamIconsData";
 import { UserOutlined } from "@ant-design/icons";
 import { Tooltip } from "antd";
 import { ColumnType } from "antd/es/table/interface";
+import ConditionalWrapper from "./ConditionalWrapper";
 
-type ModRankingsData = RankingsData & { hasGoldenTicket: boolean };
+type ModRankingsData = RankingsData & {
+  hasGoldenTicket: boolean;
+  teamUrl?: string;
+};
 
 export const isResultCounted = ({
   individualResults,
@@ -107,10 +111,19 @@ const columns: ColumnsType<ModRankingsData> = [
       >
         {record.teamIcon ? (
           <Tooltip title={record.team} placement="top">
-            <img
-              src={record.teamIcon}
-              style={{ maxWidth: 50, maxHeight: 30 }}
-            />
+            <ConditionalWrapper
+              condition={!!record.teamUrl}
+              wrapper={(children) => (
+                <a target="_blank" rel="noreferrer" href={record.teamUrl}>
+                  {children}
+                </a>
+              )}
+            >
+              <img
+                src={record.teamIcon}
+                style={{ maxWidth: 50, maxHeight: 30 }}
+              />
+            </ConditionalWrapper>
           </Tooltip>
         ) : (
           record.team
@@ -158,16 +171,18 @@ const SinglesRankingsTable = ({
           const team =
             x.individual_results.find((result) => !!result.best_team)
               ?.best_team || "";
+          const teamIconData = team
+            ? teamIconsData.find(
+                (icon) =>
+                  icon?.team?.toLowerCase() === String(team)?.toLowerCase(),
+              )
+            : undefined;
           return {
             ...x,
             hasGoldenTicket: hasGoldenTicket(x.identifier, goldenTicketData),
             team,
-            teamIcon:
-              team &&
-              teamIconsData.find(
-                (icon) =>
-                  icon?.Team?.toLowerCase() === String(team)?.toLowerCase(),
-              )?.url,
+            teamIcon: teamIconData?.image_url,
+            teamUrl: teamIconData?.web_link,
           };
         }),
       );
