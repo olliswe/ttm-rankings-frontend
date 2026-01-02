@@ -35,7 +35,7 @@ const hasGoldenTicket = (
 };
 
 const columns: ColumnsType<ModRankingsData> = [
-  { title: "Ranking", dataIndex: "ttm_ranking", key: "ttm_ranking" },
+  { title: "#", dataIndex: "ttm_ranking", key: "ttm_ranking" },
 
   {
     title: "Name",
@@ -67,15 +67,23 @@ const columns: ColumnsType<ModRankingsData> = [
     title: () => (
       <div style={{ display: "flex", alignItems: "center" }}>
         Elo{"  "}
-        <img
-          src="https://images.squarespace-cdn.com/content/v1/62c4a96d909c007e86c1000d/7122a393-cd81-45de-aaec-88fd9c7c32a9/resized_logo.png"
-          style={{ width: 25, height: 25 }}
-          alt="SC"
-        />
+        <a
+          href="https://www.stat-check.com/elo"
+          target="_blank"
+          style={{ width: 21, height: 21 }}
+          rel="noreferrer"
+        >
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/62c4a96d909c007e86c1000d/7122a393-cd81-45de-aaec-88fd9c7c32a9/resized_logo.png"
+            alt="SC"
+            style={{ width: 21, height: 21 }}
+          />
+        </a>
       </div>
     ),
-    render: (value) => (value ? value.toFixed(0) : "N/A"),
+    render: (value) => (value ? value.toFixed(0) : 0),
     dataIndex: "elo_ranking",
+    sorter: (a, b) => (a?.elo_ranking ?? 0) - (b.elo_ranking ?? 0),
   },
   {
     title: "Turniere",
@@ -85,7 +93,7 @@ const columns: ColumnsType<ModRankingsData> = [
     sorter: (a, b) => a.nr_tournaments - b.nr_tournaments,
   },
   {
-    title: "",
+    title: "Team",
     key: "teamIcon",
     width: 50,
     render: (value, record) => (
@@ -98,17 +106,17 @@ const columns: ColumnsType<ModRankingsData> = [
         }}
       >
         {record.teamIcon ? (
-          <img src={record.teamIcon} style={{ maxWidth: 50, maxHeight: 30 }} />
+          <Tooltip title={record.team} placement="top">
+            <img
+              src={record.teamIcon}
+              style={{ maxWidth: 50, maxHeight: 30 }}
+            />
+          </Tooltip>
         ) : (
-          ""
+          record.team
         )}
       </div>
     ),
-  },
-  {
-    title: "Team",
-    key: "team",
-    render: (value, record) => record.team,
   },
 ];
 
