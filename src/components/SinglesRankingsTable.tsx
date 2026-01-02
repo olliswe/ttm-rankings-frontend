@@ -182,7 +182,7 @@ const SinglesRankingsTable = ({
             hasGoldenTicket: hasGoldenTicket(x.identifier, goldenTicketData),
             team,
             teamIcon: teamIconData?.image_url,
-            teamUrl: teamIconData?.web_link,
+            teamUrl: teamIconData?.link_url,
           };
         }),
       );

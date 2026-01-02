@@ -4,7 +4,7 @@ import { API_URL } from "../utils/constants";
 export interface TeamIconData {
   team: string;
   image_url: string;
-  web_link: string;
+  link_url: string;
 }
 
 const useTeamIconsData = () => {
