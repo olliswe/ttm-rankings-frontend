@@ -85,7 +85,7 @@ const columns: ColumnsType<ModRankingsData> = [
         </a>
       </div>
     ),
-    render: (value) => (value ? value.toFixed(0) : "N/A"),
+    render: (value) => (value ? value.toFixed(1) : "N/A"),
     dataIndex: "elo_ranking",
     sorter: (a, b) => (a?.elo_ranking ?? 0) - (b.elo_ranking ?? 0),
   },
