@@ -3,7 +3,7 @@ import TeamsRankings from "../components/TeamsRankings";
 import { Country } from "../utils/constants";
 
 const GermanTeamRankings = () => {
-  return <TeamsRankings years={["2025", "2024"]} country={Country.Germany} />;
+  return <TeamsRankings years={["2026", "2025", "2024"]} country={Country.Germany} />;
 };
 
 export default GermanTeamRankings;

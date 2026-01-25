@@ -68,7 +68,7 @@ const PlayerDetailsPage = () => {
   return (
     <div>
       <YearTabs
-        years={["2025", "2024", "2023"]}
+        years={["2026", "2025", "2024", "2023"]}
         fetchData={fetchData}
         customStyle={{ maxWidth: "unset" }}
       >

@@ -5,7 +5,7 @@ import FactionRankings from "../components/FactionRankings";
 const GermanFactionRankings = () => {
   return (
     <FactionRankings
-      years={["2025", "2024", "2023"]}
+      years={["2026", "2025", "2024", "2023"]}
       country={Country.Germany}
     />
   );
